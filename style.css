@@ -163,6 +163,28 @@ body {
     color: white;
     margin-right: 3px;
 }
+.remember-forgot a {
+    color: white;
+    text-decoration: none;
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.logreg-box .btn {
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    cursor: pointer;
+    font-size:16px;
+    color: #222;
+    font-weight: 600;
+
+}
 .navbar a::before {
     content: '';
     position: absolute;
