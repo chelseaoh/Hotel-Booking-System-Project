@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Database</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="enterDetails">
+        <h1>Enter Details</h1>
+        <h4>ID</h4>
+        <input id="enterID" type="text">
+        <h4>Name</h4>
+        <input id="enterName" type="text">
+        <h4>Age</h4>
+        <input id="enterAge" type="number"> <br><br>
+        <button id="insert">INSERT</button>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button> <br><br>
+    </div>
+
+    <div id="findDetails">
+        <h1>Find by ID</h1>
+        <h4>ID</h4>
+        <input id="findID" type="text"> <br><br>
+        <button id="find">FIND</button> <br><br><br><br>
+        <h3 id="findName"></h3>
+        <h3 id="findAge"></h3> <br><br>
+    </div>
+
+    <script src="firebase.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
