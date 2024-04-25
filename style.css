@@ -76,17 +76,42 @@ body {
     right: 0;
     width: 450px;
     height: 100%;
-    background: pink;
+    backdrop-filter: blur(15px); /* Apply blur effect */
+    box-shadow: -1px 0 10px rgba(0, 0, 0, .2);
+    border-left: 2px soild rgba(255, 255, 255, .1);
     z-index: 100;
     /* display: flex; */
     align-items: center;
-    
+    padding:0 40px;
+}
+
+.icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.icon-close i {
+    font-size: 32px;
+
 }
 
 .wrapper .logreg-box {
     width: 100%;
-    background: transparent;
 }
+
+.wrapper .form-box.login {
+    display: none;
+}
+
+wrapper .form-boc.register {
+    display: none;
+}
+
 
 .logreg-box .logreg-title {
     text-align: center;
@@ -109,7 +134,7 @@ body {
     height: 50px;
     background: transparent;
     margin: 30px 0;
-    border-bottom: 4px soild white;
+    border-bottom: 4px soild black
 }
 
 .input-box input {
@@ -119,7 +144,7 @@ body {
     border: none;
     outline: none;
     font-size: 16px;
-    color: white;
+    color: black;
     font-weight: 500;
     padding-right: 25px;
 }
@@ -130,8 +155,8 @@ body {
     left: 0;
     transform: translateY(-50%);
     font-size: 16px;
-    color:white;
-    font-weight: 500;
+    color:black;
+    font-weight: 700;
     pointer-events: none;
     transition: .2s;
 }
@@ -147,12 +172,12 @@ body {
     right: 0;
     transform: translateY(-50%);
     font-size: 19px;
-    color: white;
+    color: black;
 }
 
 .logreg-box .remember-forgot{
     font-size: 14.5px;
-    color:white;
+    color:black;
     font-weight: 500;
     margin: 50px 0;
     display: flex;
@@ -183,7 +208,24 @@ body {
     font-size:16px;
     color: #222;
     font-weight: 600;
-
+}
+ /* debug later*/
+.logreg-box .logreg-link {
+    font-size: 14.5px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 25px;
+    margin: 15px;
+}
+/*debug later */
+.logreg-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+.logreg-link p a:hover {
+   text-decoration: underline; 
 }
 .navbar a::before {
     content: '';
@@ -241,3 +283,5 @@ body {
 .sidebar-open .content {
     margin-left: 200px; /* Adjust for open sidebar */
 }
+
+/*just checking*/
