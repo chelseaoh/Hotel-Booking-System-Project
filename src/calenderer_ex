@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now</title>
+    <link rel="stylesheet" href="CabelleHome.css">
+    <style>
+        /* Define your styles here or link an external CSS file */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="text">Book Now</div>
+            <div class="form2">
+                <div class="txt">Date & Time you would like to Stay</div>
+                <form id="bookingForm">
+                    <div class="inputData">
+                        <input type="date" name="book-date" id="book-date">
+                    </div>
+                    <div class="inputData">
+                        <input type="time" name="book-time" id="book-time">
+                    </div>
+                    <div class="txt">Date & Time you would like to leave</div>
+                    <div class="inputData">
+                        <input type="date" name="leave-date" id="leave-date">
+                    </div>
+                    <div class="inputData">
+                        <input type="time" name="leave-time" id="leave-time">
+                    </div>
+                    <div class="book">
+                        <button type="submit">Book</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="box"> <!-- This div is for displaying BookPage, you may replace it with your actual BookPage content -->
+        <!-- Your BookPage content goes here -->
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const bookDate = document.getElementById('book-date').value;
+            const bookTime = document.getElementById('book-time').value;
+            const leaveDate = document.getElementById('leave-date').value;
+            const leaveTime = document.getElementById('leave-time').value;
+
+            if (!bookDate || !bookTime || !leaveDate || !leaveTime) {
+                alert('Please fill all the fields');
+            } else {
+                // Write your logic to handle form submission here
+                alert('Your booking has been made');
+
+                // Show BookPage
+                document.querySelector('.box').classList.add("show");
+                // Hide form container
+                document.querySelector('.container').classList.add("hide");
+            }
+        });
+    </script>
+</body>
+</html>
