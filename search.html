@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Search and Book</title>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <h1>Find and Book Hotels</h1>
+    <input id="findHotel" type="text" placeholder="Enter Hotel ID">
+    <button id="find">Search</button>
+    <h2>Search Results</h2>
+    <div id="result"></div>
+
+    <!-- Booking Section -->
+    <h2>Book Your Room</h2>
+    <input id="hotelIDToStay" type="text" placeholder="Enter Hotel ID to Book">
+    <input id="name" type="text" placeholder="Your Name">
+    <select id="roomType">
+        <option value="Single">Single Room</option>
+        <option value="Double">Double Room</option>
+        <option value="Suite">Suite</option>
+    </select>
+    <input id="arrivalDate" type="date">
+    <input id="departureDate" type="date">
+    <button id="book">Book Room</button>
+    <div id="bookingResult"></div>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="database.html">Login</a></li>
+        <li><a href="search.html">Find Hotel</a></li>
+    </ul>
+
+    <script type="module">
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+
+        // Initialize Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getDatabase, ref, child, get, push, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const findBtn = document.getElementById('find');
+        const bookBtn = document.getElementById('book');
+        const result = document.getElementById('result');
+        const bookingResult = document.getElementById('bookingResult');
+
+        findBtn.addEventListener('click', function() {
+            const hotelID = document.getElementById('findHotel').value;
+            const dbRef = ref(db);
+            get(child(dbRef, `Hotels/${hotelID}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const hotelData = snapshot.val();
+                    result.innerHTML = `<strong>Hotel Found:</strong><br>
+                                        Name: ${hotelData.Name}<br>
+                                        Single - $${hotelData.Room1} per night<br>
+                                        Double - $${hotelData.Room2} per night<br>
+                                        Suite - $${hotelData.Room3} per night<br>`;
+                } else {
+                    result.textContent = "No hotel found with that ID.";
+                }
+            }).catch((error) => {
+                result.textContent = "Error: " + error.message;
+            });
+        });
+
+        bookBtn.addEventListener('click', function() {
+            const hotelID = document.getElementById('hotelIDToStay').value;
+            const name = document.getElementById('name').value;
+            const roomType = document.getElementById('roomType').value;
+            const arrivalDate = new Date(document.getElementById('arrivalDate').value);
+            const departureDate = new Date(document.getElementById('departureDate').value);
+            const days = (departureDate - arrivalDate) / (1000 * 3600 * 24);
+
+            const dbRef = ref(db);
+            get(child(dbRef, `Hotels/${hotelID}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const hotelData = snapshot.val();
+                    let rate;
+                    switch (roomType) {
+                        case "Single":
+                            rate = hotelData.Room1;
+                            break;
+                        case "Double":
+                            rate = hotelData.Room2;
+                            break;
+                        case "Suite":
+                            rate = hotelData.Room3;
+                            break;
+                    }
+                    const totalCost = rate * days;
+                    const bookingRef = ref(db, `Bookings/${hotelID}`);
+                    const newBooking = push(bookingRef);
+                    set(newBooking, {
+                        customerName: name,
+                        roomType: roomType,
+                        arrivalDate: arrivalDate.toISOString().split('T')[0],
+                        departureDate: departureDate.toISOString().split('T')[0],
+                        totalCost: totalCost
+                    }).then(() => {
+                        bookingResult.textContent = `Room booked successfully! Total cost: $${totalCost}`;
+                    }).catch((error) => {
+                        bookingResult.textContent = "Booking failed: " + error.message;
+                    });
+                } else {
+                    bookingResult.textContent = "No hotel found with that ID for booking.";
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
