@@ -1,0 +1,180 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+}
+
+.getaway-img{
+    position: relative; 
+    top: 10px;
+    left: 20px;
+
+}
+ 
+h1{
+    color:white;
+    font-size: 60px;
+    padding-left: 60px;
+    padding-top: 10px;    
+}
+
+h2{
+    position: relative;
+    margin-left: 40%;
+    bottom: 95%;
+    color: goldenrod;
+    font-size: 100px;
+    padding-left: 60px;
+    padding-top: 10px; 
+    font-family: cursive;
+    font-weight: 80%;
+}
+
+.perfect-text-background {
+    position: absolute;
+    top: 65%;
+    height: 170px;
+    left: 6.5%;
+    width: 85%;
+    background: rgba(0, 0, 0, 0.428);
+    align-items: center;
+    z-index: 40;
+}
+
+
+.getaway-area{
+    position:absolute;  
+}
+
+
+.center-text {  
+    position: absolute;
+    background-color: rgb(252, 252, 252);
+    top: 800px;
+    right: 290px;
+    text-align: center;
+    font-size:xx-large;
+    line-height: 1.5;
+    color: black;
+}
+
+.center-text::before{ /*line ABOVE center-text*/
+    content: '';
+    border-bottom: solid black 4px;
+    width: 1100px;
+    position: absolute;
+    margin: -15px;  /* how far aaway the line is from text */
+    left: -11.7%;   
+}
+
+.center-text::after{ /*line BELOW center-text*/
+    content: '';
+    border-top: solid black 4px;
+    width: 1100px;
+    position: absolute;
+    margin: 15px; 
+    left: -15%;   
+    text-align: justify;
+}
+
+
+.container{
+    position: absolute;
+    top: 1000px;
+    width: 1200px;
+    height: 120px;
+    right: 140px;
+    padding: 25px;
+    padding-top: 20px;
+    border-radius: 12px;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: white;
+    box-shadow: 0px 7px 29px 0px rgb(100, 100, 111, 0.2);
+}
+
+.container .select_option select{
+    padding: 10px;
+    box-shadow: none !important;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    border: 2px solid red;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.container .select_option select:first-child{
+    border-color: #1D5B79;
+}
+
+.container .select_option select:nth-child(2){
+    margin: 20px;
+    border-color: blue;
+}
+
+.container .select_option select:last-child{
+    border-color: #1d7923;
+}
+
+.world-img{
+    position: absolute;
+    height: 80%;
+    left:20px;
+    top: 1200px;
+
+
+}
+
+/*bottom of page */
+.contact{
+    position: absolute;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    font-weight: 5px;
+    top: 15%;
+    left:50px;
+    line-height: 1.8;
+}
+.vert-line{
+    position: absolute;
+    border-left: 4px solid rgb(255, 255, 255);
+    height: 180px;
+    left: 220px;
+    bottom: 10px;
+}
+
+.social{
+    position: absolute;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    font-weight: 5px;
+    bottom: 160px;
+    left:270px;
+}
+
+.instagram{
+    position: absolute;
+    bottom: -70px;
+
+}
+.twitter{
+    position: absolute;
+    left: 80px;
+    bottom: -68px;
+}
+
+.facebook{
+    position: absolute;
+    left: 160px;
+    bottom:-69px;
+}
+
+.bottom-page{
+    position: absolute;
+    background-color: black;
+    top: 1920px;
+    left: 0px;
+    height: 210px;
+    width: 1440px;
+}
