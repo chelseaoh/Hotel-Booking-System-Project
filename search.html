@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Search and Book</title>
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
 </head>
 <body>
@@ -14,19 +15,21 @@
     <h2>Search Results</h2>
     <div id="result"></div>
 
-    <!-- Booking Section -->
-    <h2>Book Your Room</h2>
-    <input id="hotelIDToStay" type="text" placeholder="Enter Hotel ID to Book">
-    <input id="name" type="text" placeholder="Your Name">
-    <select id="roomType">
-        <option value="Single">Single Room</option>
-        <option value="Double">Double Room</option>
-        <option value="Suite">Suite</option>
-    </select>
-    <input id="arrivalDate" type="date">
-    <input id="departureDate" type="date">
-    <button id="book">Book Room</button>
-    <div id="bookingResult"></div>
+    <!-- Booking Section, initially hidden -->
+    <div id="bookingSection" style="display: none;">
+        <h2>Book Your Room</h2>
+        <input id="hotelIDToStay" type="text" placeholder="Enter Hotel ID to Book">
+        <input id="name" type="text" placeholder="Your Name">
+        <select id="roomType">
+            <option value="Single">Single Room</option>
+            <option value="Double">Double Room</option>
+            <option value="Suite">Suite</option>
+        </select>
+        <input id="arrivalDate" type="date">
+        <input id="departureDate" type="date">
+        <button id="book">Book Room</button>
+        <div id="bookingResult"></div>
+    </div>
 
     <ul>
         <li><a href="index.html">Home</a></li>
@@ -36,7 +39,10 @@
     </ul>
 
     <script type="module">
-        // Your web app's Firebase configuration
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
         const firebaseConfig = {
             apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
             authDomain: "cabelle-a0a69.firebaseapp.com",
@@ -47,82 +53,77 @@
             appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
             measurementId: "G-MF101YKX7H"
         };
-
-        // Initialize Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-        import { getDatabase, ref, child, get, push, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
-        
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
+        const auth = getAuth(app);
 
-        const findBtn = document.getElementById('find');
-        const bookBtn = document.getElementById('book');
-        const result = document.getElementById('result');
-        const bookingResult = document.getElementById('bookingResult');
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                document.getElementById('bookingSection').style.display = 'block';
+            } else {
+                document.getElementById('bookingSection').style.display = 'none';
+            }
+        });
 
-        findBtn.addEventListener('click', function() {
+        document.getElementById('find').addEventListener('click', function() {
             const hotelID = document.getElementById('findHotel').value;
-            const dbRef = ref(db);
-            get(child(dbRef, `Hotels/${hotelID}`)).then((snapshot) => {
+            get(child(ref(db), `Hotels/${hotelID}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     const hotelData = snapshot.val();
-                    result.innerHTML = `<strong>Hotel Found:</strong><br>
-                                        Name: ${hotelData.Name}<br>
-                                        Single - $${hotelData.Room1} per night<br>
-                                        Double - $${hotelData.Room2} per night<br>
-                                        Suite - $${hotelData.Room3} per night<br>`;
+                    document.getElementById('result').innerHTML = `<strong>Hotel Found:</strong><br>
+                        Name: ${hotelData.Name}<br>
+                        Single - $${hotelData.Room1} per night<br>
+                        Double - $${hotelData.Room2} per night<br>
+                        Suite - $${hotelData.Room3} per night<br>`;
                 } else {
-                    result.textContent = "No hotel found with that ID.";
+                    document.getElementById('result').textContent = "No hotel found with that ID.";
                 }
             }).catch((error) => {
-                result.textContent = "Error: " + error.message;
+                document.getElementById('result').textContent = "Error: " + error.message;
             });
         });
 
-        bookBtn.addEventListener('click', function() {
+        document.getElementById('book').addEventListener('click', function() {
             const hotelID = document.getElementById('hotelIDToStay').value;
-            const name = document.getElementById('name').value;
             const roomType = document.getElementById('roomType').value;
             const arrivalDate = new Date(document.getElementById('arrivalDate').value);
             const departureDate = new Date(document.getElementById('departureDate').value);
-            const days = (departureDate - arrivalDate) / (1000 * 3600 * 24);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
 
-            const dbRef = ref(db);
-            get(child(dbRef, `Hotels/${hotelID}`)).then((snapshot) => {
+            if (arrivalDate < today) {
+                document.getElementById('bookingResult').textContent = "Error: Arrival date cannot be in the past.";
+                return;
+            } else if (departureDate <= arrivalDate) {
+                document.getElementById('bookingResult').textContent = "Error: Departure date must be after the arrival date.";
+                return;
+            }
+
+            get(child(ref(db), `Hotels/${hotelID}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     const hotelData = snapshot.val();
-                    let rate;
-                    switch (roomType) {
-                        case "Single":
-                            rate = hotelData.Room1;
-                            break;
-                        case "Double":
-                            rate = hotelData.Room2;
-                            break;
-                        case "Suite":
-                            rate = hotelData.Room3;
-                            break;
-                    }
+                    const rate = hotelData[`Room${roomType === 'Single' ? '1' : roomType === 'Double' ? '2' : '3'}`];
+                    const days = (departureDate - arrivalDate) / (1000 * 3600 * 24);
                     const totalCost = rate * days;
-                    const bookingRef = ref(db, `Bookings/${hotelID}`);
-                    const newBooking = push(bookingRef);
-                    set(newBooking, {
-                        customerName: name,
-                        roomType: roomType,
-                        arrivalDate: arrivalDate.toISOString().split('T')[0],
-                        departureDate: departureDate.toISOString().split('T')[0],
-                        totalCost: totalCost
-                    }).then(() => {
-                        bookingResult.textContent = `Room booked successfully! Total cost: $${totalCost}`;
-                    }).catch((error) => {
-                        bookingResult.textContent = "Booking failed: " + error.message;
-                    });
+
+                    if (isNaN(totalCost)) {
+                        document.getElementById('bookingResult').textContent = "Error: Cannot calculate total cost.";
+                        return;
+                    }
+
+                    localStorage.setItem('hotelID', hotelID);
+                    localStorage.setItem('roomType', roomType);
+                    localStorage.setItem('arrivalDate', arrivalDate.toISOString().split('T')[0]);
+                    localStorage.setItem('departureDate', departureDate.toISOString().split('T')[0]);
+                    localStorage.setItem('totalCost', totalCost.toString());
+                    window.location.href = 'payment.html';
                 } else {
-                    bookingResult.textContent = "No hotel found with that ID for booking.";
+                    document.getElementById('bookingResult').textContent = "No hotel found with that ID for booking.";
                 }
+            }).catch((error) => {
+                document.getElementById('bookingResult').textContent = "Booking error: " + error.message;
             });
         });
-
     </script>
 </body>
 </html>

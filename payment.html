@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Payment</title>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <h1>Payment Details</h1>
+    <form id="paymentForm">
+        <fieldset>
+            <legend>Credit Card Information</legend>
+            <label for="name">Cardholder Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+            <br>
+            <label for="expirationDate">Expiration Date (MM/YY):</label>
+            <input type="text" id="expirationDate" name="expirationDate" required>
+            <br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Booking Details</legend>
+            <label for="hotelID">Hotel ID:</label>
+            <input type="text" id="hotelID" name="hotelID" readonly>
+            <br>
+            <label for="roomType">Room Type:</label>
+            <input type="text" id="roomType" name="roomType" readonly>
+            <br>
+            <label for="arrivalDate">Arrival Date:</label>
+            <input type="date" id="arrivalDate" name="arrivalDate" readonly>
+            <br>
+            <label for="departureDate">Departure Date:</label>
+            <input type="date" id="departureDate" name="departureDate" readonly>
+            <br>
+            <label for="totalCost">Total Cost:</label>
+            <input type="text" id="totalCost" name="totalCost" readonly>
+            <br>
+        </fieldset>
+
+        <button type="submit">Submit Payment</button>
+    </form>
+
+    <div id="paymentResult"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        function loadBookingDetails() {
+            document.getElementById('hotelID').value = localStorage.getItem('hotelID');
+            document.getElementById('roomType').value = localStorage.getItem('roomType');
+            document.getElementById('arrivalDate').value = localStorage.getItem('arrivalDate');
+            document.getElementById('departureDate').value = localStorage.getItem('departureDate');
+            document.getElementById('totalCost').value = localStorage.getItem('totalCost');
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const bookingData = {
+                cardholderName: document.getElementById('name').value,
+                cardNumber: document.getElementById('cardNumber').value,
+                expirationDate: document.getElementById('expirationDate').value,
+                cvv: document.getElementById('cvv').value,
+                hotelID: document.getElementById('hotelID').value,
+                roomType: document.getElementById('roomType').value,
+                arrivalDate: document.getElementById('arrivalDate').value,
+                departureDate: document.getElementById('departureDate').value,
+                totalCost: parseFloat(document.getElementById('totalCost').value)
+            };
+
+            // Save booking under "Bookings/hotelId/GuestName"
+            const bookingsRef = ref(db, `Bookings/${bookingData.hotelID}/${bookingData.cardholderName}`);
+            set(bookingsRef, bookingData).then(() => {
+                document.getElementById('paymentResult').textContent = "Payment successful and booking completed!";
+            }).catch((error) => {
+                document.getElementById('paymentResult').textContent = "Payment failed: " + error.message;
+            });
+        });
+
+        window.onload = loadBookingDetails;
+    </script>
+</body>
+</html>

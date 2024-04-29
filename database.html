@@ -9,9 +9,24 @@
         #enterUserDetails {float: left; width: 50%; background-color: darkslategrey; color: floralwhite;}
         #findDetails {float: left; width: 50%; background-color: floralwhite; color: darkslategray;}
         input {width: 120px;}
+        .inputData, #authForm, #enterUserDetails, #findDetails { margin-bottom: 10px; }
+        .book, #enterUserDetails, #findDetails { margin-top: 20px; }
     </style>
+      </head>
+      <body>
+        <h1>User Information</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="database.html">Login</a></li>
+                <li><a href="search.html">Find Hotel</a></li>
+            </ul>
+        </nav>
+      </body>
 </head>
 <body>
+    <!-- Sign In page -->
     <div id="authForm">
         <h2>Sign Up or Sign In</h2>
         <input type="email" placeholder="Email" id="userEmail">
@@ -21,6 +36,11 @@
         <button id="googleLogin">Sign in with Google</button>
     </div>
 
+
+
+
+
+    <!-- User Basic Info-->
     <div id="enterUserDetails">
         <h1>Account Information</h1>
 
@@ -33,6 +53,9 @@
         <h4>Phone Number</h4>
         <input id="enterPhoneNumber" type="number"> <br><br><br><br>
 
+        
+
+        <!-- User Address Info -->
         <h4>Home Address</h4> 
 
         <h4>Address</h4>
@@ -47,6 +70,23 @@
         <h4>Zip Code</h4>
         <input id="enterZipCode" type="number"> <br><br>
 
+
+
+        <!-- Payment Info -->
+        <h4>Credit Card (Optional)</h4>
+
+        <h4>Card Number</h4>
+        <input id="enterCardNumber" type="number">
+
+        <h4>Expiration Date</h4>
+        <input id="enterExpirationDate" type="number">
+
+        <h4>CVV</h4>
+        <input id="enterCVVNumber" type="number"> <br><br>
+        
+        
+        
+        <!-- Buttons that will be displayed -->
         <button id="insert">INSERT</button>
         <button id="update">UPDATE</button>
         <button id="remove">REMOVE</button> <br><br>
@@ -55,6 +95,9 @@
         <button id="signOutButton">Sign Out</button> <br><br><br>
     </div>
 
+
+
+    <!-- Finding User Info in Database -->
     <div id="findDetails">
         <h1>Find by ID</h1>
         <h4>ID</h4>
@@ -66,7 +109,10 @@
         <h3 id="findAddress" type="text"></h3> 
         <h3 id="findCity" type="text"></h3>
         <h3 id="findState" type="text"></h3>
-        <h3 id="findZipCode" type="text"></h3> <br><br>
+        <h3 id="findZipCode" type="text"></h3> 
+        <h3 id="findCardNumber" type="text"></h3>
+        <h3 id="findExpirationDate" type="text"></h3>
+        <h3 id="findCVVNumber" type="text"></h3> <br><br>
     </div>
 
     <script type="module">
@@ -79,11 +125,13 @@
             onAuthStateChanged,
             signOut
         } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
         // Import GoogleAuthProvider
         import {
             GoogleAuthProvider,
             signInWithPopup
         } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -106,7 +154,9 @@
         import {getDatabase, set, get, update, remove, ref, child}
         from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"
 
-        const db = getDatabase();
+        
+        
+        const dataBase = getDatabase();
 
         // Entering User Info
         var enterName = document.querySelector("#enterName");
@@ -116,6 +166,9 @@
         var enterCity = document.querySelector("#enterCity");
         var enterState = document.querySelector("#enterState");
         var enterZipCode = document.querySelector("#enterZipCode");
+        var enterCardNumber = document.querySelector("#enterCardNumber");
+        var enterExpirationDate = document.querySelector("#enterExpirationDate");
+        var enterCVVNumber = document.querySelector("#enterCVVNumber");
 
         // Finding User Info
         var findName = document.querySelector("#findName");
@@ -125,26 +178,32 @@
         var findCity = document.querySelector("#findCity");
         var findState = document.querySelector("#findState");
         var findZipCode = document.querySelector("#findZipCode");
-
-        // Buttons
-        var insertBtn = document.querySelector("#insert");
-        var updateBtn = document.querySelector("#update");
-        var removeBtn = document.querySelector("#remove");
-        var findBtn = document.querySelector("#find");
+        var findCardNumber = document.querySelector("#findCardNumber");
+        var findExpirationDate = document.querySelector("#findExpirationDate");
+        var findCVVNumber = document.querySelector("#findCVVNumber");
+        
+       // Buttons
+       var insertButton = document.querySelector("#insert");
+        var updateButton = document.querySelector("#update");
+        var removeButton = document.querySelector("#remove");
+        var findButton = document.querySelector("#find");
 
         // Inserting User Data
         function InsertData() {
-            set(ref(db, "People/" + enterID.value), {
+            set(ref(dataBase, "People/" + enterID.value), {
                 Name: enterName.value,
                 ID: enterID.value,
                 PhoneNumber: enterPhoneNumber.value,
                 Address: enterAddress.value,
                 City: enterCity.value,
                 State: enterState.value,
-                ZipCode: enterZipCode.value
+                ZipCode: enterZipCode.value,
+                CardNumber: enterCardNumber.value,
+                ExpirationDate: enterExpirationDate.value,
+                CVVNumber: enterCVVNumber.value
             })
             .then(()=>{
-                alert("Data added successfully!");
+                alert("Account Information added successfully!");
             })
             .catch((error)=>{
                 alert(error);
@@ -153,16 +212,19 @@
 
         // Updating User Data
         function UpdateData() {
-            update(ref(db, "People/" + enterID.value), {
+            update(ref(dataBase, "People/" + enterID.value), {
                 Name: enterName.value,
                 PhoneNumber: enterPhoneNumber.value,
                 Address: enterAddress.value,
                 City: enterCity.value,
                 State: enterState.value,
-                ZipCode: enterZipCode.value
+                ZipCode: enterZipCode.value,
+                CardNumber: enterCardNumber.value,
+                ExpirationDate: enterExpirationDate.value,
+                CVVNumber: enterCVVNumber.value
             })
             .then(()=>{
-                alert("Data updated successfully!");
+                alert("Account Information updated successfully!");
             })
             .catch((error)=>{
                 alert(error);
@@ -171,20 +233,22 @@
 
         // Removing User Data
         function RemoveData() {
-            remove(ref(db, "People/" + enterID.value))
+            remove(ref(dataBase, "People/" + enterID.value))
             .then(()=>{
-                alert("Data deleted successfully!");
+                alert("Account Information deleted successfully!");
             })
             .catch((error)=>{
                 alert(error);
             });
         }
 
+
+    
         // Finding User Data
         function FindData() {
-            const dbref = ref(db);
+            const dataBaseref = ref(dataBase);
 
-            get(child(dbref, "People/" + findID.value))
+            get(child(dataBaseref, "People/" + findID.value))
             .then((snapshot)=>{
                 if (snapshot.exists()) {
                     findName.innerHTML = "Name: " + snapshot.val().Name;
@@ -193,22 +257,23 @@
                     findCity.innerHTML = "City: " + snapshot.val().City;
                     findState.innerHTML = "State: " + snapshot.val().State;
                     findZipCode.innerHTML = "Zip Code: " + snapshot.val().ZipCode;
+                    findCardNumber.innerHTML = "Card Number: " + snapshot.val().CardNumber;
+                    findExpirationDate.innerHTML = "Expiration Date: " + snapshot.val().ExpirationDate;
+                    findCVVNumber.innerHTML = "CVV Number: " + snapshot.val().CVVNumber;
                 } else {
                     alert("No data found");
                 }
             })
             .catch((error)=>{
-                // There was no semicolon in the vid and github codes
                 alert(error);
             });
-            // There was no semicolon in the vid and the github codes
         }
 
         // Button Actions
-        insertBtn.addEventListener('click', InsertData);
-        updateBtn.addEventListener('click', UpdateData);
-        removeBtn.addEventListener('click', RemoveData);
-        findBtn.addEventListener('click', FindData);
+        insertButton.addEventListener('click', InsertData);
+        updateButton.addEventListener('click', UpdateData);
+        removeButton.addEventListener('click', RemoveData);
+        findButton.addEventListener('click', FindData);
 
         
         
@@ -240,7 +305,7 @@
             })
         }
 
-        
+        // Google Account Login
         document.getElementById('googleLogin').addEventListener('click', function() {
             const provider = new GoogleAuthProvider();
             signInWithPopup(auth, provider).then((result) => {
@@ -262,6 +327,7 @@
                 console.error("Authentication error:", errorCode, errorMessage);
             });
         });
+        
         // Signing In
         const userSignIn = async() => {
             const signInEmail = userEmail.value;
@@ -286,11 +352,14 @@
                     authForm.style.display = 'none';
                     enterUserDetails.style.display = 'block';
                     findDetails.style.display = 'block';
+                    document.querySelector('.container').style.display = 'block'; 
+
                 }
                 else {
                     authForm.style.display = 'block';
                     enterUserDetails.style.display = 'none';
                     findDetails.style.display = 'none';
+                    document.querySelector('.container').style.display = 'none'; 
                 }
             })
         }
