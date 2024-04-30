@@ -15,6 +15,11 @@
     <h2>Search Results</h2>
     <div id="result"></div>
 
+    <div id = "nbs" style = "display: block;">
+        <h2>Login to Book Hotel</h2>
+        <li><a href="database.html">Login</a></li>
+    </div>
+
     <!-- Booking Section, initially hidden -->
     <div id="bookingSection" style="display: none;">
         <h2>Book Your Room</h2>
@@ -34,7 +39,6 @@
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="database.html">Login</a></li>
         <li><a href="search.html">Find Hotel</a></li>
     </ul>
 
@@ -60,8 +64,12 @@
         onAuthStateChanged(auth, user => {
             if (user) {
                 document.getElementById('bookingSection').style.display = 'block';
+                document.getElementById('nbs').style.display = 'none';
+
             } else {
                 document.getElementById('bookingSection').style.display = 'none';
+                document.getElementById('nbs').style.display = 'block';
+
             }
         });
 
