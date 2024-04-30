@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hilton</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="redo.css">
+    <link rel="stylesheet" href="location.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Whisper&display=swap");
@@ -31,9 +31,9 @@
         </nav>
         
     </header>
-
+    
     <article class="getaway-area">
-        <img class="getaway-pic" src="https://thinkhealth.priorityhealth.com/wp-content/uploads/2020/08/ThinkHealth-Personal-Wellness-Staycation-2-scaled.jpg" alt="" style="width:1440px; height:700px;">
+        <img class="getaway-pic" src="https://thinkhealth.priorityhealth.com/wp-content/uploads/2020/08/ThinkHealth-Personal-Wellness-Staycation-2-scaled.jpg" alt="" style="width:100%; height: 650px">
         <section class= "perfect-text-background">  
             <h1>FIND A HOTEL<br>AND PLAN THE</h1>
             <h2>perfect getaway</h2>
@@ -51,21 +51,13 @@
     <!--DROP-DOWN MENU-->
     <div class="container">
         <select class="form-select region" aria-label="Default select example">
-            <option selected>Choose Region</option>
-        </select>
-
-        <select class="form-select = country" aria-label="Default select example">
-            <option selected>Choose Country or Region</option>
-        </select>
-
-        <select class="form-select = state" aria-label="Default select example">
-            <option selected>Choose State or Province</option>
+            <option selected>Choose Hotel</option>
         </select>
 
     </div>
 
-    <img class="world-img" src="https://upload.wikimedia.org/wikipedia/commons/4/4c/World_blank_map_%28grey_%26_white%29.png" alt="">
     
+    <img class="world-img" src="https://upload.wikimedia.org/wikipedia/commons/4/4c/World_blank_map_%28grey_%26_white%29.png" alt="">
     
     <article class="bottom-page">
         <div class="contact">
@@ -97,25 +89,12 @@
         </div>
       
     </article>
+
     <!----->
     <!-- JavaScript -->
     <script>
-        var region = document.querySelector('.region'),
-            country = document.querySelector('.country'),
-            state = document.querySelector('.state')
+        var hotel = document.querySelector('.hotel')
     </script>
-
-    function loadRegion{
-
-    }
-
-    function loadCountry{
-        
-    }
-
-    function loadState{
-        
-    }
 
 </body>
 </html>
