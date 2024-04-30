@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaBelle</title>
+    <style>
+        body{text-align: center;}
+        #enterUserDetails {float: left; width: 50%; background-color: darkslategrey; color: floralwhite;}
+        #findDetails {float: left; width: 50%; background-color: floralwhite; color: darkslategray;}
+        input {width: 120px;}
+        .inputData, #authForm, #enterUserDetails, #findDetails { margin-bottom: 10px; }
+        .book, #enterUserDetails, #findDetails { margin-top: 20px; }
+    </style>
+      </head>
+      <body>
+        <h1>User Information</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="database.html">Login</a></li>
+                <li><a href="search.html">Find Hotel</a></li>
+            </ul>
+        </nav>
+      </body>
+</head>
+<body>
+    <!-- Sign In page -->
+    <div id="authForm">
+        <h2>Sign Up or Sign In</h2>
+        <input type="email" placeholder="Email" id="userEmail">
+        <input type="password" placeholder="Password" id="userPassword">  <br><br>
+        <button id="signUpButton">Sign Up</button>
+        <button id="signInButton">Sign In</button>
+        <button id="googleLogin">Sign in with Google</button>
+    </div>
+
+
+
+
+
+    <!-- User Basic Info-->
+    <div id="enterUserDetails">
+        <h1>Account Information</h1>
+
+        <h4>Name</h4>
+        <input id="enterName" type="text">
+
+        <h4>ID</h4>
+        <input id="enterID" type="text">
+
+        <h4>Phone Number</h4>
+        <input id="enterPhoneNumber" type="number"> <br><br><br><br>
+
+        
+
+        <!-- User Address Info -->
+        <h4>Home Address</h4> 
+
+        <h4>Address</h4>
+        <input id="enterAddress" type="text">
+
+        <h4>City</h4>
+        <input id="enterCity" type="text">
+
+        <h4>State</h4>
+        <input id="enterState" type="text">
+
+        <h4>Zip Code</h4>
+        <input id="enterZipCode" type="number"> <br><br>
+
+
+
+        <!-- Payment Info -->
+        <h4>Credit Card (Optional)</h4>
+
+        <h4>Card Number</h4>
+        <input id="enterCardNumber" type="number">
+
+        <h4>Expiration Date</h4>
+        <input id="enterExpirationDate" type="number">
+
+        <h4>CVV</h4>
+        <input id="enterCVVNumber" type="number"> <br><br>
+        
+        
+        
+        <!-- Buttons that will be displayed -->
+        <button id="insert">INSERT</button>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button> <br><br>
+
+        <h3>Access only if Signed Up</h3>
+        <button id="signOutButton">Sign Out</button> <br><br><br>
+    </div>
+
+
+
+    <!-- Finding User Info in Database -->
+    <div id="findDetails">
+        <h1>Find by ID</h1>
+        <h4>ID</h4>
+        <input id="findID" type="text"> <br><br>
+        <button id="find">FIND</button>     <br><br><br><br>
+
+        <h3 id="findName" type="text"></h3>
+        <h3 id="findPhoneNumber" type="text"></h3> 
+        <h3 id="findAddress" type="text"></h3> 
+        <h3 id="findCity" type="text"></h3>
+        <h3 id="findState" type="text"></h3>
+        <h3 id="findZipCode" type="text"></h3> 
+        <h3 id="findCardNumber" type="text"></h3>
+        <h3 id="findExpirationDate" type="text"></h3>
+        <h3 id="findCVVNumber" type="text"></h3> <br><br>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
+        // Import GoogleAuthProvider
+        import {
+            GoogleAuthProvider,
+            signInWithPopup
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"
+
+        
+        
+        const dataBase = getDatabase();
+
+        // Entering User Info
+        var enterName = document.querySelector("#enterName");
+        var enterID = document.querySelector("#enterID");
+        var enterPhoneNumber = document.querySelector("#enterPhoneNumber");
+        var enterAddress = document.querySelector("#enterAddress");
+        var enterCity = document.querySelector("#enterCity");
+        var enterState = document.querySelector("#enterState");
+        var enterZipCode = document.querySelector("#enterZipCode");
+        var enterCardNumber = document.querySelector("#enterCardNumber");
+        var enterExpirationDate = document.querySelector("#enterExpirationDate");
+        var enterCVVNumber = document.querySelector("#enterCVVNumber");
+
+        // Finding User Info
+        var findName = document.querySelector("#findName");
+        var findID = document.querySelector("#findID");
+        var findPhoneNumber = document.querySelector("#findPhoneNumber");
+        var findAddress = document.querySelector("#findAddress");
+        var findCity = document.querySelector("#findCity");
+        var findState = document.querySelector("#findState");
+        var findZipCode = document.querySelector("#findZipCode");
+        var findCardNumber = document.querySelector("#findCardNumber");
+        var findExpirationDate = document.querySelector("#findExpirationDate");
+        var findCVVNumber = document.querySelector("#findCVVNumber");
+        
+       // Buttons
+       var insertButton = document.querySelector("#insert");
+        var updateButton = document.querySelector("#update");
+        var removeButton = document.querySelector("#remove");
+        var findButton = document.querySelector("#find");
+
+        // Inserting User Data
+        function InsertData() {
+            set(ref(dataBase, "People/" + enterID.value), {
+                Name: enterName.value,
+                ID: enterID.value,
+                PhoneNumber: enterPhoneNumber.value,
+                Address: enterAddress.value,
+                City: enterCity.value,
+                State: enterState.value,
+                ZipCode: enterZipCode.value,
+                CardNumber: enterCardNumber.value,
+                ExpirationDate: enterExpirationDate.value,
+                CVVNumber: enterCVVNumber.value
+            })
+            .then(()=>{
+                alert("Account Information added successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        // Updating User Data
+        function UpdateData() {
+            update(ref(dataBase, "People/" + enterID.value), {
+                Name: enterName.value,
+                PhoneNumber: enterPhoneNumber.value,
+                Address: enterAddress.value,
+                City: enterCity.value,
+                State: enterState.value,
+                ZipCode: enterZipCode.value,
+                CardNumber: enterCardNumber.value,
+                ExpirationDate: enterExpirationDate.value,
+                CVVNumber: enterCVVNumber.value
+            })
+            .then(()=>{
+                alert("Account Information updated successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            }); 
+        }
+
+        // Removing User Data
+        function RemoveData() {
+            remove(ref(dataBase, "People/" + enterID.value))
+            .then(()=>{
+                alert("Account Information deleted successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+
+    
+        // Finding User Data
+        function FindData() {
+            const dataBaseref = ref(dataBase);
+
+            get(child(dataBaseref, "People/" + findID.value))
+            .then((snapshot)=>{
+                if (snapshot.exists()) {
+                    findName.innerHTML = "Name: " + snapshot.val().Name;
+                    findPhoneNumber.innerHTML = "Phone Number: " + snapshot.val().PhoneNumber;
+                    findAddress.innerHTML = "Address: " + snapshot.val().Address;
+                    findCity.innerHTML = "City: " + snapshot.val().City;
+                    findState.innerHTML = "State: " + snapshot.val().State;
+                    findZipCode.innerHTML = "Zip Code: " + snapshot.val().ZipCode;
+                    findCardNumber.innerHTML = "Card Number: " + snapshot.val().CardNumber;
+                    findExpirationDate.innerHTML = "Expiration Date: " + snapshot.val().ExpirationDate;
+                    findCVVNumber.innerHTML = "CVV Number: " + snapshot.val().CVVNumber;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        // Button Actions
+        insertButton.addEventListener('click', InsertData);
+        updateButton.addEventListener('click', UpdateData);
+        removeButton.addEventListener('click', RemoveData);
+        findButton.addEventListener('click', FindData);
+
+        
+        
+        // Authentication
+        const userEmail = document.querySelector("#userEmail");
+        const userPassword = document.querySelector("#userPassword");
+        const authForm = document.querySelector("#authForm");
+        const signUpButton = document.querySelector("#signUpButton");
+        const signInButton = document.querySelector("#signInButton");
+        const signOutButton = document.querySelector("#signOutButton");
+
+        enterUserDetails.style.display = 'none';
+        findDetails.style.display = 'none';
+
+        // Signing Up
+        const userSignUp = async() => {
+            const signUpEmail = userEmail.value;
+            const signUpPassword = userPassword.value;
+            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+                alert("Your account has been created!");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode + errorMessage)
+            })
+        }
+
+        // Google Account Login
+        document.getElementById('googleLogin').addEventListener('click', function() {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider).then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const token = result.credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                alert("Signed in successfully!");
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                const credential = error.credential;
+                // ...
+                console.error("Authentication error:", errorCode, errorMessage);
+            });
+        });
+        
+        // Signing In
+        const userSignIn = async() => {
+            const signInEmail = userEmail.value;
+            const signInPassword = userPassword.value;
+            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert("You have signed in successfully!");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode + errorMessage)
+            })
+        }
+
+
+        // After Signing Up/In
+        const checkAuthState = async() => {
+            onAuthStateChanged(auth, user => {
+                if(user) {
+                    authForm.style.display = 'none';
+                    enterUserDetails.style.display = 'block';
+                    findDetails.style.display = 'block';
+                    document.querySelector('.container').style.display = 'block'; 
+
+                }
+                else {
+                    authForm.style.display = 'block';
+                    enterUserDetails.style.display = 'none';
+                    findDetails.style.display = 'none';
+                    document.querySelector('.container').style.display = 'none'; 
+                }
+            })
+        }
+
+        // Signing Out
+        const userSignOut = async() => {
+            await signOut(auth);
+        }
+
+        checkAuthState();
+
+
+        // Button Actions
+        signUpButton.addEventListener('click', userSignUp);
+        signInButton.addEventListener('click', userSignIn);
+        signOutButton.addEventListener('click', userSignOut);
+      </script>
+
+</body>
+</html>
