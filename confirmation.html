@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js" type="module"></script>
+</head>
+<body>
+    <h1>Booking Confirmation</h1>
+    <div id="userEmail">User Email: Loading...</div>
+    <div id="bookingDetails"></div>
+    <button id="doneButton">Done</button>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import {
+            getAuth,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.onload = function() {
+            onAuthStateChanged(auth, function(user) {
+                if (user) {
+                    // User is signed in, display email
+                    const userEmailDiv = document.getElementById('userEmail');
+                    userEmailDiv.textContent = 'User Email: ' + user.email;
+                } else {
+                    // No user is signed in
+                    window.location.href = 'login.html'; // Redirect to login page
+                }
+            });
+
+            const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+            const detailsDiv = document.getElementById('bookingDetails');
+            if (bookingData) {
+                detailsDiv.innerHTML = `
+                    <p>Cardholder Name: ${bookingData.cardholderName}</p>
+                    <p>Hotel ID: ${bookingData.hotelID}</p>
+                    <p>Room Type: ${bookingData.roomType}</p>
+                    <p>Arrival Date: ${bookingData.arrivalDate}</p>
+                    <p>Departure Date: ${bookingData.departureDate}</p>
+                    <p>Total Cost: ${bookingData.totalCost}</p>
+                `;
+            } else {
+                detailsDiv.textContent = 'No booking data found.';
+            }
+
+            // Cleanup local storage after displaying booking data
+            localStorage.removeItem('bookingData');
+
+            // Event listener for the Done button
+            document.getElementById('doneButton').addEventListener('click', function() {
+                window.location.href = 'index.html'; // Redirect to the homepage or index page
+            });
+        }
+    </script>
+</body>
+</html>

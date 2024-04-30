@@ -91,13 +91,16 @@
                 totalCost: parseFloat(document.getElementById('totalCost').value)
             };
 
-            // Save booking under "Bookings/hotelId/GuestName"
+
             const bookingsRef = ref(db, `Bookings/${bookingData.hotelID}/${bookingData.cardholderName}`);
-            set(bookingsRef, bookingData).then(() => {
-                document.getElementById('paymentResult').textContent = "Payment successful and booking completed!";
-            }).catch((error) => {
-                document.getElementById('paymentResult').textContent = "Payment failed: " + error.message;
-            });
+            set(bookingsRef, bookingData)
+                .then(() => {
+                    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+                    window.location.href = 'confirmation.html'; // Redirect to confirmation page
+                })
+                .catch((error) => {
+                    document.getElementById('paymentResult').textContent = "Payment failed: " + error.message;
+                });
         });
 
         window.onload = loadBookingDetails;
