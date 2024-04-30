@@ -1,139 +1,160 @@
-.title-page{
-    position: relative;
-    font-weight: 100;
-    font-size: 25px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-top: 100px;
-    margin-left: 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/*title of page*/
+h1 {
+  margin-top: 7%;
+  margin-left: 3%;
+  font-weight: 100%;
+  font-size: 300%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /*discounts on the left side*/
-.left-name{
-    position: relative;
-    font-size: 40px;
-    font-weight: 300px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    top: 50px;
-    margin-left: 200px;
-}
-.left-details{
-    position: relative;
-    font-size: 30px;
-    font-weight: 100px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    top: 70px;
-    margin-left: 200px;
-    text-align: left;
+.left-name {
+  position: relative;
+  font-size: 250%;
+  font-weight: 150%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  top: 20%;
+  margin-left: 14%;
 }
 
-.summer-img{
-    position: absolute;
-    top: -50px;
-    left: 55%;
-    
+.left-details {
+  position: relative;
+  font-size: 200%;
+  font-weight: 100%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  top: 25%;
+  margin-left: 14%;
+
 }
 
-.discount-left-1{
-    position: relative;
-    background-color: rgb(247, 233, 127);
-    margin-top: 50px;
-    height: 250px;
+.summer-img {
+  position: absolute;
+  top: -18%;
+  left: 55%;
+}
+
+.discount-left-1 {
+  position: absolute;
+  background-color: rgb(247, 233, 127);
+  width: 100%;
+  height: 30%;
+  top: 25%;
 }
 
 /*discounts on the right side*/
-.military-img{
-    position: absolute;
-    top: -40px;
-    left: 70px;
-    
+.right-name {
+
+  position: relative;
+  font-size: 250%;
+  font-weight: 150%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  top: 20%;
+  margin-left: 50%;
 }
 
-.right-name{
-    position: relative;
-    font-size: 40px;
-    font-weight: 300px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    top: 50px;
-    left: 700px;
+
+.right-details {
+  position: relative;
+  font-size: 200%;
+  font-weight: 100%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  top: 25%;
+  margin-left: 50%;
 }
 
-.right-details{
-    position: relative;
-    font-size: 30px;
-    font-weight: 100px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    top: 70px;
-    left:700px;
-    text-align: left;
+.military-img {
+  position: absolute;
+  top: -25%;
+  left: 5%;
 }
 
-.discount-right{
-    position: relative;
-    background-color: rgb(152, 248, 165);
-    margin-top: 100px;
-    height: 280px;
+.discount-right {
+  position: absolute;
+  background-color: rgb(152, 248, 165);
+  width: 100%;
+  height: 30%;
+  top: 70%;
+
 }
 
-.relax-img{
-    position: absolute;
-    top: -50px;
-    left: 55%;
+/*second left*/
+.relax-img {
+  position: absolute;
+  top: -10%;
+  left: 55%;
 }
-.discount-left-2{
-    position: relative;
-    background-color: rgb(247, 233, 127);
-    margin-top: 120px;
-    height: 280px;
+
+.discount-left-2 {
+  position: absolute;
+  background-color: rgb(247, 233, 127);
+  width: 100%;
+  height: 36%;
+  top: 115%;
+
 }
 
 /*bottom of page */
-.contact{
-    position: relative;
-    font-size: medium;
-    color: white;
-    font-weight: 5px;
-    top: 30px;
-    left:50px;
-    line-height: 1.8;
-}
-.vert-line{
-    position: relative;
-    border-left: 4px solid rgb(255, 255, 255);
-    height: 180px;
-    left: 230px;
-    bottom: 150px;
+.contact {
+  position: absolute;
+  font-size: medium;
+  color: rgb(255, 255, 255);
+  font-weight: 5px;
+  bottom: 10%;
+  left: 5%;
+  line-height: 1.8;
 }
 
-.social{
-    position: relative;
-    font-size: medium;
-    color: rgb(255, 255, 255);
-    font-weight: 5px;
-    bottom: 330px;
-    left:270px;
+.vert-line {
+  position: absolute;
+  border-left: 4px solid rgb(255, 255, 255);
+  height: 180px;
+  bottom: 10%;
+  left: 22%;
 }
 
-.instagram{
-    position: relative;
-    bottom: -5px;
+.social {
+  position: absolute;
+  font-size: medium;
+  color: rgb(255, 255, 255);
+  font-weight: 5px;
+  bottom: 72%;
+  left: 27%;
 
 }
-.twitter{
-    position: relative;
-    left: 80px;
-    bottom:51px;
+
+.instagram {
+  position: absolute;
+  bottom: -235%;
+
 }
 
-.facebook{
-    position: relative;
-    left: 160px;
-    bottom:106px
+.twitter {
+  position: absolute;
+  left: 45%;
+  bottom: -235%
 }
 
-.bottom-page{
-    position: relative;
-    background-color: black;
-    top: 70px;
-    height: 250px;
+.facebook {
+  position: absolute;
+  left: 90%;
+  bottom: -235%;
+}
+
+.bottom-page {
+  position: absolute;
+  background-color: black;
+  top: 160%;
+  height: 30%;
+  width: 100%;
 }
