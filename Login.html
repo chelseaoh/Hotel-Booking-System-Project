@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hilton</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Whisper&display=swap");
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="cabelle_logo.png" alt="CaBelle Logo">
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Our Locations</a>
+            <a href="#">NewsLetter</a>
+            <a href="#">Discounts</a>
+            <a href="#">Book Now</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+
+    <section class="section">
+        <div class="wrapper">
+            <div class="logreg-box">
+                <div class="form-box login">
+                    <div class="logreg-title">
+                        <h2>Login</h2>
+                        <p>Please provide the following to login</p>
+                    </div>
+                    <form action="#">
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bx-envelope'></i></span>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-lock'></i></span>
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="remember-forgot">
+                            <label><input type="checkbox"> Remember me</label>
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                        <div class="logreg-link">
+                            <p>Don't have an account? <a href="#" class="register-link">Become a member today!</a></p>
+                            <a href="#" class="guest-login">Guest Login</a>
+                        </div>
+                        <div class="blurred-background"></div>
+                    </form>
+                </div>
+                <div class="form-box register">
+                    <div class="logreg-title">
+                        <h2>Join CaBelle Lux</h2>
+                        <p>Please provide the following</p>
+                    </div>
+
+                    <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-user'></i></span>
+                        <input type="text" required>
+                        <label>Full Name</label>
+                    </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-envelope'></i></span>
+                            <input type="email" required>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+                            <input type="password" required>
+                            <label>Password</label>
+                        </div>
+
+                        <div class="remember-forgot"><label><input type="checkbox">I agree to the terms & conditions</label>
+                        </div>
+
+                        <button type="submit" class="btn">Register</button>
+
+                        <div class="logreg-link">
+                            <p>Already a member? <a href="#" class="register-link">Login</a></p>
+                            <a href="#" class="guest-login">Guest Login</a>
+                        </div>
+                        <div class="blurred-background"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="Login.js"></script>
+    <!--pushing-->
+</body>
+</html>
+</html>
