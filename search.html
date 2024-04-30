@@ -20,7 +20,7 @@
         <li><a href="database.html">Login</a></li>
     </div>
 
-    <!-- Booking Section, initially hidden -->
+    <!-- Booking Section, hidden if not signed in -->
     <div id="bookingSection" style="display: none;">
         <h2>Book Your Room</h2>
         <input id="hotelIDToStay" type="text" placeholder="Enter Hotel ID to Book">
@@ -42,11 +42,22 @@
         <li><a href="search.html">Find Hotel</a></li>
     </ul>
 
+    <div id = "signOutButton" style="display: none;">
+        <button id="signOutButton">Sign Out</button> <br><br><br>
+    </div>
+
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
         import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
         const firebaseConfig = {
             apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
             authDomain: "cabelle-a0a69.firebaseapp.com",
@@ -61,17 +72,28 @@
         const db = getDatabase(app);
         const auth = getAuth(app);
 
+
         onAuthStateChanged(auth, user => {
             if (user) {
                 document.getElementById('bookingSection').style.display = 'block';
                 document.getElementById('nbs').style.display = 'none';
+                document.getElementById('signOutButton').style.display = 'block';
+
 
             } else {
                 document.getElementById('bookingSection').style.display = 'none';
                 document.getElementById('nbs').style.display = 'block';
-
+                document.getElementById('signOutButton').style.display = 'none';
             }
         });
+
+        // Signing Out
+        const userSignOut = async() => {
+            await signOut(auth);
+        }
+        const signOutButton = document.querySelector("#signOutButton");
+
+        signOutButton.addEventListener('click', userSignOut);
 
         document.getElementById('find').addEventListener('click', function() {
             const hotelID = document.getElementById('findHotel').value;
