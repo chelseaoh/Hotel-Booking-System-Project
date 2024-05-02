@@ -1,0 +1,319 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url('file:///C:/Users/16616/Downloads/LV2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* nav bar*/
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    padding: 20px 40px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 30;
+
+}
+.header::after{
+    content: '';
+    border-top: solid black 4px;
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    bottom: -12px;   
+    left:0;
+}
+
+.Hilton {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 25px;
+    color: black;
+    font-weight: 700px;
+    text-decoration: none;
+    margin-left: 50px;
+    margin-right: 0px;
+    top: 30px;
+}
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: .3s;
+}
+
+.navbar a:hover::before {
+  width: 100%;
+
+}
+
+.join{
+    position: absolute;
+    top:15%;
+    right: 10%;
+    height:21%;
+    width:5%;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: white;
+    border-color: black;
+    border-width: 3px;
+    
+}
+
+.login{
+    position: absolute;
+    top:15%;
+    right: 3%;
+    height:20%;
+    width:5%;
+    color: white;
+    font-size: 15px;
+    border: 5px;
+    border-radius: 5px;
+    background-color: black;
+    
+}
+
+
+/*welcoming section*/
+.hotle-img{
+    position: relative;
+    width: 100%;
+    height: 750px;
+    left: 0;
+}
+
+h1{
+    position: absolute;
+    font-size: 50px;
+    font-weight: 20px;
+    background-color: rgba(255, 255, 255, 0.477);
+    bottom: 150px;
+    left:90px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+}
+
+.welcome{
+    position: absolute;
+}
+
+
+/* phone.address, hours*/
+.phone{
+    position: absolute;
+    padding: 20px 200px 20px 150px;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+
+}
+
+.address{
+    position: absolute;
+    padding: 20px 200px 20px 150px;
+    font-size: 15px;
+    left: 25%;
+    bottom: 25px;
+    color: rgb(0, 0, 0);
+
+}
+
+.hours{
+    position: absolute;
+    padding: 20px 200px 20px 150px;
+    font-size: 15px;
+    left: 60%;
+    bottom: 45px;
+    color: rgb(0, 0, 0);
+}
+
+.info{
+    position: absolute;
+    top:95%;
+    background-color: rgb(252, 228, 157);
+    width: 100%;
+    height: 130px; 
+
+}
+
+p{
+    position: absolute;
+    margin-top: 11%;
+    padding: 40px 40px;
+    font-size: 25px;
+    left:2.1%;
+}
+ 
+
+/*facilites*/
+.facilites h3{
+    position: absolute;
+    font-size: 300%;
+    margin-left: 5%;
+    top: 132%;
+}
+.dining-area{
+    position: absolute;
+    top: 140%;
+    margin-left: 5%;
+    size: 20px;
+}
+/*
+.dining-area #blur.active {
+    filter: blur(20px);
+}
+
+#popup{
+    position: relative;
+    top:40%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5%;
+}
+
+#popup.active{
+    top: 40%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5%;
+}
+*/
+
+.din-img{
+    position: relative;
+    width: 20%;
+    height:300px;
+    border-radius: 5px;
+    
+}
+.dining{
+    font-size: large;
+}
+
+.spa-area{
+    position: absolute;
+    top: 139.8%;
+    margin-left: 20%;
+    size: 20px;
+}
+
+.spa-img{
+    position: relative;
+    width: 18%;
+    height:300px;
+    border-radius: 5px;
+   
+}
+
+.spa{
+    font-size: large;
+}
+
+.thearpy-area{
+    position: absolute;
+    top: 139.8%;
+    margin-left: 35.2%;
+    size: 20px;
+}
+
+.thearpy-img{
+    position: relative;
+    width: 32.8%;
+    height:300px;
+    border-radius: 5px;
+   
+}
+.thearpy{
+    font-size: large;
+}
+
+.pool-area{
+    position: absolute;
+    top: 139.8%;
+    margin-left: 50.7%;
+    size: 20px;
+}
+.pool-img{
+    position: relative;
+    width: 35%;
+    height:300px;
+    border-radius: 5px;
+   
+}
+
+.pool{
+    font-size: large;
+}
+
+.bar-area{
+    position: absolute;
+    top: 139.8%;
+    margin-left: 66.3%;
+    size: 20px;
+}
+.bar-img{
+    position: relative;
+    width: 44%;
+    height:300px;
+    border-radius: 5px;
+   
+}
+
+.bar{
+    font-size: large;
+}
+
+.gym-area{
+    position: absolute;
+    top: 139.8%;
+    margin-left: 82%;
+    size: 20px;
+}
+.gym-img{
+    position: relative;
+    width: 88%;
+    height:300px;
+    border-radius: 5px;
+   
+}
+
+.gym{
+    font-size: large;
+}
+
