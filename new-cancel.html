@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--
+    <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="cancel.css">
+</head>
+<body>
+    <!-- Top of Page-->
+    <!--
+    <article class="top-of-page">
+        
+        <img class="hotelLogo" src="https://drive.google.com/file/d/1XyOOYyn6M3NjfEKCoX8CEJDMo02HnD_l/view?usp=sharing" alt="hotel">
+        
+
+        <img class="hotelLogo" src="https://as1.ftcdn.net/v2/jpg/03/11/92/40/1000_F_311924075_ByEQzkPfKDjSRBHxHOZIL5fzvl4BOIgP.jpg" alt="hotel">
+        <h1>Tipton Hotel</h1>
+
+        <button id="Join">JOIN</button>
+        <button id="SignIn">SIGN IN</button>
+
+        <h2>CANCEL RESERVATION</h2>
+    </article>
+    -->
+    <header class="header">
+        <img class="hotelLogo" src="https://as1.ftcdn.net/v2/jpg/03/11/92/40/1000_F_311924075_ByEQzkPfKDjSRBHxHOZIL5fzvl4BOIgP.jpg" alt="hotel">
+        <h1>Tipton Hotel</h1>
+
+        <button class="join" id="Join">JOIN</button>
+        <button class="sign-in" id="SignIn">SIGN IN</button>
+
+    </header>
+
+    <h2>CANCEL RESERVATION</h2>
+
+    <article class="container">
+        <!-- first, lat names; email; phone -->
+        <section class="top">
+
+                <div class="row-one">
+                    <div class="fname-area">
+                        <h4>First Name</h4>
+                        <input class="text-box" id="enterFirstName" type="text"> 
+                    </div>
+                    
+                    <div class="lname-area">
+                        <h4>Last Name</h4>
+                        <input class="text-box" id="enterLastName" type="text">
+                    </div>
+                    
+                </div>
+                
+                <div class="row-two">
+                    <div class="email-area">
+                        <h4>Email Address</h4>
+                        <input class="text-box" id="enterEmailAddress" type="text"> <br> <br>
+                    </div>
+                    
+                    <div class="phone-area">
+                        <h4>Phone Number</h4>
+                        <input class="text-box" id="enterPhoneNumber" type="text"> <br> <br>
+                    </div>
+                    
+                </div> 
+            <hr>
+                
+        </section>
+
+        <!-- arrival, dept. date; email; phone -->
+        <section class="middle">
+
+            <div class="row-one"> 
+                <div class="arrival-area">
+                    <h4>Arrival Date</h4>
+                    <input class="text-box" id="enterArrivalDate" type="text">
+                </div>
+                
+                <div class="dept-area">
+                    <h4>Departure Date</h4>
+                    <input class="text-box" id="enterDepartureDate" type="text">
+                </div>
+                
+            </div>
+        
+            <div class="row-two">
+                <!--number of rooms-->
+                <div class="num-rooms-area">
+                    <h4>Number of Rooms Booked</h4>
+                    <input class="text-box" id="enterNumberofRooms" type="text"> <br> <br>
+                </div>
+                
+                <!--room number-->
+                <div class="room-num-area">
+                    <h4>Room Number</h4>
+                    <input class="text-box" id="enterRoomNumber" type="text"> <br> <br>
+                </div>
+                
+            </div>
+
+            <hr>
+        </section>    
+
+
+        <section class="bottom">
+            <p>There will be a cancellation fee charged if you decide to continue with cancelling this reservation.</p>
+            <button class="cont-button" id="continue">CONTINUE</button>
+            <p></p>
+        </section>
+
+
+    </article>
+
+    <!-- User Info -->
+    <!---
+    <div class="container">
+        <div class="inner">
+            <div class="top">
+                <div class="info-left">
+                    <h4>First Name</h4>
+                    <input id="enterFirstName" type="text">
+
+                    <h4>Email Address</h4>
+                    <input id="enterEmailAddress" type="text"> <br> <br>
+                </div>
+
+                <div class="info-right">
+                    <h4>Arrival Date</h4>
+                    <input id="enterArrivalDate" type="text">
+
+                    <h4>Number of Rooms Booked</h4>
+                    <input id="enterNumberofRooms" type="text"> <br> <br>
+                </div>
+            </div>
+
+            
+
+            <div class="middle">
+                <div class="room-left">
+                    <h4>Last Name</h4>
+                    <input id="enterLastName" type="text">
+
+                    <h4>Phone Number</h4>
+                    <input id="enterPhoneNumber" type="text"> <br> <br>
+                </div>
+
+                <div class="room-right">
+                    <h4>Departure Date</h4>
+                    <input id="enterDepartureDate" type="text">
+
+                    <h4>Room Number</h4>
+                    <input id="enterRoomNumber" type="text"> <br> <br>
+                </div>
+            </div>   
+
+            <div class="bottom">
+                <p>There will be a cancellation fee charged if you decide to continue with cancelling this reservation.</p>
+
+                <button id="continue">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+    ->
+    
+
+
+
+</body>
+</html>
