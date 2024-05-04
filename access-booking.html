@@ -13,13 +13,14 @@
 
 </head>
 <body>
+
     <!--NAVIGATION BAR-->
     <header class="header">
         <a href="#" class="Hilton">Tipton Hotel (City name)</a>
 
         <nav class="navbar">
             <a href="room-details.html">Room Details</a>
-            <a href="book-info.html">Booking Info</a>
+            <a href="access-booking.html">Booking Info</a>
             <a href="billing.html">Billing</a>
 
             <div class="user-icon"> 
@@ -30,26 +31,97 @@
         
     </header>
 
-    <article class="booking-info">
-        <h3> Booking Info</h3>
-        
-        <form>
-            <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="fname" value="John"><br>
-            <input type="submit" value="Submit">
-        </form>
-
-        <!--WHEN INPUT NAME AND CLICK SUBMIT THE TABLE APPEARS-->
-
+    <article class="enter-booking-info">
+        <h1> Booking Info</h1>
+        <label>Guest's Name</label>
+        <input id="bookingData">
+        <button class="submit" id="mySubmit">Submit</button>
     </article>
-    
+    <p id="bookingDetails">DISPLAY INFO</p>
+    <!--MAKING TABLE IS OPTIONAL -->
+    <!-- <article class="table" id="bookingDetails">
+        
+        <table>
+            HEADER FIELDS
+            <tr>
+                <th>Name</th>
+                <th>Hotel ID</th>
+                <th>Room Type</th>
+                <th>Arrival Date</th>
+                <th>Departure Date</th>
+                <th>Price</th>
+            </tr>
 
+            VALUES
+            <tr>
+                <td id="name">no</td>
+                <td id="hotel-id"></td>
+                <td id="room-type"></td>
+                <td id="arrival"></td>
+                <td id="departure"></td>
+                <td id="price">$$</td>
+
+            </tr>
+            
+        </table>
+    </article>    
+    -->
     
 
     <!--JAVASCRIPT BELOW-->
-    <script>
+    <script type ="module">
+                
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
 
+   
+        const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+        const detailsDiv = document.getElementById('bookingDetails');
+
+        document.getElementById('mySubmit').addEventListener('click', function() {
+            
+            if (bookingData) {
+                detailsDiv.innerHTML = `
+                    <p>Cardholder Name: ${bookingData.cardholderName}</p>
+                    <p>Hotel ID: ${bookingData.hotelID}</p>
+                    <p>Room Type: ${bookingData.roomType}</p>
+                    <p>Arrival Date: ${bookingData.arrivalDate}</p>
+                    <p>Departure Date: ${bookingData.departureDate}</p>
+                    <p>Total Cost: ${bookingData.totalCost}</p>
+                `;
+                document.getElementById("bookingDetails").innerHTML = detailsDiv.innerHTML;
+                
+            } else {
+                document.getElementById("bookingDetails").innerHTML = 'No booking data found.';
+                
+            }
+
+        });
+        
+    
     </script>
+    
 
 </body>
 </html>
