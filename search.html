@@ -1,53 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Search and Book</title>
+    <link rel="stylesheet" href="search.css">
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
 </head>
 <body>
-    <h1>Find and Book Hotels</h1>
-    <input id="findHotel" type="text" placeholder="Enter Hotel ID">
-    <button id="find">Search</button>
-    <h2>Search Results</h2>
-    <div id="result"></div>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Tipton Hotel</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="search.html">Find Hotel</a></li>
+            </ul>
+        </nav>
+    </header>
+  <h4>Find and Book Hotels</h4>
+    <main>
+        <input id="findHotel" type="text" placeholder="Enter Hotel ID">
+        <button id="find">Search</button>
+        <h2>Search Results</h2>
+        <div id="result"></div>
 
-    <div id = "nbs" style = "display: block;">
-        <h2>Login to Book Hotel</h2>
-        <li><a href="database.html">Login</a></li>
-    </div>
+        <div id="nbs" style="display: block;">
+            <h2>Login to Book Hotel</h2>
+            <a href="database.html">Login</a>
+        </div>
 
-    <!-- Booking Section, hidden if not signed in -->
-    <div id="bookingSection" style="display: none;">
-        <h2>Book Your Room</h2>
-        <input id="hotelIDToStay" type="text" placeholder="Enter Hotel ID to Book">
-        <input id="name" type="text" placeholder="Your Name">
-        <select id="roomType">
-            <option value="Single">Single Room</option>
-            <option value="Double">Double Room</option>
-            <option value="Suite">Suite</option>
-        </select>
-        <input id="arrivalDate" type="date">
-        <input id="departureDate" type="date">
-        <button id="book">Book Room</button>
-        <div id="bookingResult"></div>
-    </div>
+        <!-- Booking Section, hidden if not signed in -->
+        <div id="bookingSection" style="display: none;">
+            <h2>Book Your Room</h2>
+            <input id="hotelIDToStay" type="text" placeholder="Enter Hotel ID to Book">
+            <input id="name" type="text" placeholder="Your Name">
+            <select id="roomType">
+                <option value="Single">Single Room</option>
+                <option value="Double">Double Room</option>
+                <option value="Suite">Suite</option>
+            </select>
+            <input id="arrivalDate" type="date">
+            <input id="departureDate" type="date">
+            <button id="book">Book Room</button>
+            <div id="bookingResult"></div>
+        </div>
 
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="search.html">Find Hotel</a></li>
-    </ul>
-
-    <div id = "signOutButton" style="display: none;">
-        <button id="signOutButton">Sign Out</button> <br><br><br>
-    </div>
-
-
+        <div id="signOutButton" style="display: none;">
+            <button>Sign Out</button>
+        </div>
+    </main>
+    <footer>
+        CONTACT US: tipton@cabelle.com
+    </footer>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
         import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
@@ -58,7 +67,7 @@
             onAuthStateChanged,
             signOut
         } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-        
+
         const firebaseConfig = {
             apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
             authDomain: "cabelle-a0a69.firebaseapp.com",
