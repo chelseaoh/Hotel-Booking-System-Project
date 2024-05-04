@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+    <link rel="stylesheet" href="Account.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconify/icons-bx/bx.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-icons">
+            <a href="Login.html">
+                <button class="exit-btn">&#10005;</button>
+            </a>
+        </div>
+        
+        <div class="account-info">
+            <i class='bx bx-face'></i>
+            <h2>Account Information</h2>
+            <ul>
+               
+    <!-- User Basic Info-->
+    <div id="enterUserDetails">
+
+
+        <h4>Name</h4>
+        <input id="enterName" type="text">
+
+        <h4>ID</h4>
+        <input id="enterID" type="text">
+
+        <h4>Phone Number</h4>
+        <input id="enterPhoneNumber" type="number"> <br><br><br><br>
+
+        
+
+        <!-- User Address Info -->
+        <h4>Home Address</h4> 
+
+        <h4>Address</h4>
+        <input id="enterAddress" type="text">
+
+        <h4>City</h4>
+        <input id="enterCity" type="text">
+
+        <h4>State</h4>
+        <input id="enterState" type="text">
+
+        <h4>Zip Code</h4>
+        <input id="enterZipCode" type="number"> <br><br>
+
+          <!-- Buttons that will be displayed -->
+          <button id="insert">INSERT</button>
+          <button id="update">UPDATE</button>
+          <button id="remove">REMOVE</button> <br><br>
+
+        
+
+            </ul>
+        </div>
+        <hr>
+        
+        <h3>Change Password</h3>
+        <form>
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" name="current-password" required><br>
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="new-password" required><br>
+            <label for="retype-new-password">Re-type New Password:</label>
+            <input type="password" id="retype-new-password" name="retype-new-password" required><br>
+            <button type="submit">Change Password</button>
+        </form>
+        <hr>
+        
+        <button class="delete-btn">Delete Account</button>
+    
+    </div>
+
+    <!--firebase-->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
+        // Import GoogleAuthProvider
+        import {
+            GoogleAuthProvider,
+            signInWithPopup
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"
+
+         const dataBase = getDatabase();
+
+          // Entering User Info
+          var enterName = document.querySelector("#enterName");
+          var enterID = document.querySelector("#enterID");
+          var enterPhoneNumber = document.querySelector("#enterPhoneNumber");
+          var enterAddress = document.querySelector("#enterAddress");
+          var enterCity = document.querySelector("#enterCity");
+          var enterState = document.querySelector("#enterState");
+          var enterZipCode = document.querySelector("#enterZipCode");
+        
+               
+       // Buttons
+        var insertButton = document.querySelector("#insert");
+        var updateButton = document.querySelector("#update");
+        var removeButton = document.querySelector("#remove");
+        var findButton = document.querySelector("#find");
+
+           // Inserting User Data
+           function InsertData() {
+            set(ref(dataBase, "People/" + enterID.value), {
+                Name: enterName.value,
+                ID: enterID.value,
+                PhoneNumber: enterPhoneNumber.value,
+                Address: enterAddress.value,
+                City: enterCity.value,
+                State: enterState.value,
+                ZipCode: enterZipCode.value,
+                CardNumber: enterCardNumber.value,
+                ExpirationDate: enterExpirationDate.value,
+                CVVNumber: enterCVVNumber.value
+            })
+            .then(()=>{
+                alert("Account Information added successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        // Updating User Data
+        function UpdateData() {
+            update(ref(dataBase, "People/" + enterID.value), {
+                Name: enterName.value,
+                PhoneNumber: enterPhoneNumber.value,
+                Address: enterAddress.value,
+                City: enterCity.value,
+                State: enterState.value,
+                ZipCode: enterZipCode.value,
+                CardNumber: enterCardNumber.value,
+                ExpirationDate: enterExpirationDate.value,
+                CVVNumber: enterCVVNumber.value
+            })
+            .then(()=>{
+                alert("Account Information updated successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            }); 
+        }
+
+        // Removing User Data
+        function RemoveData() {
+            remove(ref(dataBase, "People/" + enterID.value))
+            .then(()=>{
+                alert("Account Information deleted successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+        
+          // Button Actions
+        insertButton.addEventListener('click', InsertData);
+        updateButton.addEventListener('click', UpdateData);
+        removeButton.addEventListener('click', RemoveData);
+
+                
+</body>
+</html>
+
