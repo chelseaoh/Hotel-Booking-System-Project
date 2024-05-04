@@ -295,10 +295,11 @@ h2{
 .cont-button{
     position: absolute;
     right:10%;
-    border: 3px solid black;
+    border: none;
     font-size: x-large;
     padding: 10px;
-    background-color: white;
+    background-color: rgb(0, 0, 0);
     font-weight: bold;
     cursor: pointer;
+    color: white;
 }
