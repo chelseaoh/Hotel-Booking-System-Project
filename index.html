@@ -1,41 +1,72 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home Page</title>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
-            authDomain: "cabelle-a0a69.firebaseapp.com",
-            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
-            projectId: "cabelle-a0a69",
-            storageBucket: "cabelle-a0a69.appspot.com",
-            messagingSenderId: "735995960774",
-            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
-            measurementId: "G-MF101YKX7H"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-    </script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Top of Page-->
+    <article class="top-of-page">
+        <img src="https://drive.google.com/file/d/1XyOOYyn6M3NjfEKCoX8CEJDMo02HnD_l/view?usp=sharing" alt="hotel" class="hotelLogo">
+        <span>Tipton Hotel</span>
 
+        <button id="Join">JOIN</button>
+        <button id="SignIn">SIGN IN</button>
 
-  </head>
-  <body>
-    <h1>Welcome to CaBelle</h1>
-    <nav>
-      <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="database.html">Login</a></li>
-          <li><a href="search.html">Find Hotel</a></li>
-      </ul>
-  </nav>
-  </body>
+        <h2>CANCEL RESERVATION</h2>
+    </article>
+
+    <!-- User Info -->
+    <div class="container">
+        <div class="inner">
+            <div class="top">
+                <div class="info-left">
+                    <h4>First Name</h4>
+                    <input id="enterFirstName" type="text">
+
+                    <h4>Email Address</h4>
+                    <input id="enterEmailAddress" type="text"> <br> <br>
+                </div>
+
+                <div class="info-right">
+                    <h4>Arrival Date</h4>
+                    <input id="enterArrivalDate" type="text">
+
+                    <h4>Number of Rooms Booked</h4>
+                    <input id="enterNumberofRooms" type="text"> <br> <br>
+                </div>
+            </div>
+
+            
+
+            <div class="middle">
+                <div class="room-left">
+                    <h4>Last Name</h4>
+                    <input id="enterLastName" type="text">
+
+                    <h4>Phone Number</h4>
+                    <input id="enterPhoneNumber" type="text"> <br> <br>
+                </div>
+
+                <div class="room-right">
+                    <h4>Departure Date</h4>
+                    <input id="enterDepartureDate" type="text">
+
+                    <h4>Room Number</h4>
+                    <input id="enterRoomNumber" type="text"> <br> <br>
+                </div>
+            </div>
+
+            
+
+            <div class="bottom">
+                <p>There will be a cancellation fee charged if you decide to continue with cancelling this reservation.</p>
+
+                <button id="continue">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-
-       
