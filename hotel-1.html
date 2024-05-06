@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipton</title>
+    <link rel="stylesheet" href="hotel.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Whisper&display=swap");
+    </style>
+
+</head>
+<body>
+
+    <header class="header">
+        <div class="name-n-rating">
+            <a href="#" class="Hilton">Hilton</a>
+            <div class="star-rating">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div>
+
+        </div>
+
+        <button class="join">Join</button>
+        <button class="login">Log in</button>
+
+        <nav class="navbar">
+            <!--default-->
+            <a href="hotel-1.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+
+            <!-- signed-in -->
+            <a href="discounts-hotel-1.html">Discounts</a>
+            <a href="newsletters-hotel-1.html">NewsLetters</a>
+            
+
+            <!--default-->
+            <a href="attractions-hotel-1.html">Tourist Attractions</a>
+        </nav>
+
+    </header>
+ 
+    <section class="welcome-sec">
+        <img class="hotle-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/8e/7f/e3/caption.jpg?w=1200&h=-1&s=1" alt="">
+        <h1>Welcome to <br> Tipton Hotel (city name)! </h1>
+    </section>
+
+    <section class="info">
+        <div class="phone">
+            <h2>CALL US</h2>
+            <p1>(473) 745-7387</p1>
+        </div>
+
+        <div class="address">
+            <h2>ADDRESS</h2>
+            <p1>##### st. address <br>city name, state zip code</p1>
+        </div>
+
+        <div class="hours">
+            <h2>OPEN HOURS</h2>
+            <p1>7am-11pm</p1>
+        </div>
+
+    </section>
+
+    <p>At Tipton Hotel (city name), we carefully crafted and refined every detail.  Flexible, open spaces.  Purposeful design. Signature moments.  Everything here has been optimized to create a comfortable, elegant and effortless stay.  Our location is ideal for everyone. </p>
+
+
+    <div class="container-1">
+        <article class="facilites">
+            <h3>FACILITES</h3>
+
+            <div class="dining-area" id="din" onclick="showDin()">
+                <img class="din-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/177747309.jpg?k=c531bd2975f62f024b5e59dae6a57f3b465c13fdfdaf91251eed772616622674&o=&s=1024x" alt="">
+                <div class="dining">DINING HALL</div>  
+                
+            </div>
+            
+            <div class="spa-area" onclick="showSpa()">
+                <img class="spa-img" src="https://www.travelandleisure.com/thmb/lZZCsHJRev__uz1V0AMYPEWIyB8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-header-hotel-bel-air-spa-couples-enclave-LAHOTELSPA1222-c7f0a9e9618a43f2a4c7f4795272b80b.jpg" alt="" >
+                <div class="spa">SPA</div>
+            </div>
+            
+            <div class="thearpy-area" onclick="showThearpy()">
+                <img class="thearpy-img" src="https://lirp.cdn-website.com/e4565cf8/dms3rep/multi/opt/cupping-2e517f9f-640w.jpg" alt="" >
+                <div class="thearpy">CUPPING THEARPY</div>
+            </div>
+            
+
+            <div class="pool-area" onclick="showPool()">
+                <img class="pool-img" src=" https://media.istockphoto.com/id/104731717/photo/luxury-resort.jpg?s=612x612&w=0&k=20&c=cODMSPbYyrn1FHake1xYz9M8r15iOfGz9Aosy9Db7mI=" alt="">
+                <div class="pool">POOL</div>
+            </div>
+            
+
+            <div class="bar-area" onclick="showBar()">
+                <img class="bar-img" src="https://images.squarespace-cdn.com/content/v1/5956050736e5d3e59a162d74/1596031187173-O25GYBIWZXMNZZH21FSZ/Amsterdam-587-20160904.jpg" alt="" >
+                <div class="bar">BAR</div>
+            </div>
+            
+            <div class="gym-area" onclick="showGym()">
+                <img class="gym-img" src="https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/237/2018/01/07101844/One-World-Hotel-Petaling-Jaya-Malaysia-Gym.jpg" alt="" >
+                <div class="gym">GYM</div>
+            </div>
+        <!---->
+        </article>
+    </div>
+
+    <!--THE POPUPS FOR FACILITES BELOW-->
+    <!--DINNING HALL popup-->
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="showDin()">&times;</div>
+            <h1 id="name-facility">Dining Hall</h1>
+            <img class="din-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/177747309.jpg?k=c531bd2975f62f024b5e59dae6a57f3b465c13fdfdaf91251eed772616622674&o=&s=1024x" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit consectetur harum deserunt unde explicabo suscipit dolorem vitae minus, consequuntur asperiores iusto, atque commodi reiciendis porro aspernatur est animi at tenetur.</p>
+        </div>
+    </div>
+
+    <!--SPA popup-->
+    <div class="popup" id="popup-2">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="showSpa()">&times;</div>
+            <h1 id="name-facility">Spa</h1>
+            <img class="din-img" src="https://www.travelandleisure.com/thmb/lZZCsHJRev__uz1V0AMYPEWIyB8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-header-hotel-bel-air-spa-couples-enclave-LAHOTELSPA1222-c7f0a9e9618a43f2a4c7f4795272b80b.jpg" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit consectetur harum deserunt unde explicabo suscipit dolorem vitae minus, consequuntur asperiores iusto, atque commodi reiciendis porro aspernatur est animi at tenetur.</p>
+        </div>
+    </div>
+
+    <!--THEARPY popup-->
+    <div class="popup" id="popup-3">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="showThearpy()">&times;</div>
+            <h1 id="name-facility">Cupping Thearpy</h1>
+            <img class="din-img" src="https://lirp.cdn-website.com/e4565cf8/dms3rep/multi/opt/cupping-2e517f9f-640w.jpg" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit consectetur harum deserunt unde explicabo suscipit dolorem vitae minus, consequuntur asperiores iusto, atque commodi reiciendis porro aspernatur est animi at tenetur.</p>
+        </div>
+    </div>
+
+    <!--POOLpopup-->
+    <div class="popup" id="popup-4">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="showPool()">&times;</div>
+            <h1 id="name-facility">Pool</h1>
+            <img class="din-img" src=" https://media.istockphoto.com/id/104731717/photo/luxury-resort.jpg?s=612x612&w=0&k=20&c=cODMSPbYyrn1FHake1xYz9M8r15iOfGz9Aosy9Db7mI=" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit consectetur harum deserunt unde explicabo suscipit dolorem vitae minus, consequuntur asperiores iusto, atque commodi reiciendis porro aspernatur est animi at tenetur.</p>
+        </div>
+    </div>
+
+    <!--BAR popup-->
+    <div class="popup" id="popup-5">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="showBar()">&times;</div>
+            <h1 id="name-facility">Bar</h1>
+            <img class="din-img" src="https://images.squarespace-cdn.com/content/v1/5956050736e5d3e59a162d74/1596031187173-O25GYBIWZXMNZZH21FSZ/Amsterdam-587-20160904.jpg" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit consectetur harum deserunt unde explicabo suscipit dolorem vitae minus, consequuntur asperiores iusto, atque commodi reiciendis porro aspernatur est animi at tenetur.</p>
+        </div>
+    </div>
+
+    <!--GYM popup-->
+    <div class="popup" id="popup-6">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="showGym()">&times;</div>
+            <h1 id="name-facility">Gym</h1>
+            <img class="din-img" src="https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/237/2018/01/07101844/One-World-Hotel-Petaling-Jaya-Malaysia-Gym.jpg" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit consectetur harum deserunt unde explicabo suscipit dolorem vitae minus, consequuntur asperiores iusto, atque commodi reiciendis porro aspernatur est animi at tenetur.</p>
+        </div>
+    </div>
+
+
+    <!--ROOMS-->
+    <article class="rooms">
+
+        <h3>ROOMS</h3>
+        <p>We ensure each of our rooms provide the comfort you are looking for no matter the price.</p>
+        
+        <div class="standard-area">
+            <img class= "standard-img" src="https://www.kabayanhotel.com.ph/wp-content/uploads/2016/02/kabayan-standardroom-01.jpg" alt="" >
+            <p>Standard Room<p>
+        </div>
+        
+        <div class="deluxe-area">
+            <img class="deluxe-img" src="https://www.marinabaysands.com/content/dam/marinabaysands/hotel/sands-deluxe-room/sands-deluxe-room-1920x1080.jpg" alt="" >
+            <p>Deluxe Room</p>
+        </div>
+        <!--
+        <div class="accessible-area">
+            <img class="accessible-img" src="https://www.keioplaza.com/rooms/images/universal_ph10.jpg" alt="" >
+            <p>Accessible Room</p>
+        </div>
+        -->
+
+        <div class="suite-area">
+            <img class="suite-img" src="https://media-cdn.tripadvisor.com/media/photo-s/22/ac/7b/b8/the-amayaa.jpg" alt="" >
+            <p>Suite Room</p>
+        </div>
+
+        <a href="rooms.html">
+            <button class="room-view">View All Rooms</button>
+        </a>
+    
+    </article>
+    
+
+    <!--POLICES -->
+    <article class="policy-area">
+        <h3>HOTEL POLICES</h3>
+        <p>Please read all our policies.</p>
+
+        <div class="parking-area">
+            <img class="parking-img" src="https://pngimg.com/d/parking_PNG15.png" alt="" > 
+            <p>Parking</p>
+        </div>
+        
+        
+        <div class="smoking-area">
+            <img class="smoking-img" src="https://cdn-icons-png.flaticon.com/512/5114/5114536.png" alt="" >
+            <p>Smoking</p>
+        </div>
+
+        <div class="refund-area">
+            <img class="refund-img" src="https://www.svgrepo.com/show/88889/refund.svg" alt="" >
+            <p>Refund</p>
+        </div>
+
+        <div class="pay-area">
+            <img class="pay-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Dollar_Sign.svg/500px-Dollar_Sign.svg.png" alt="" >
+            <p>Payment</p>
+        </div>
+        
+        <a href="policy-hotel-1.html">
+            <button class="policy-button">View Policies</button>
+        </a>
+
+    </article>
+
+    <article class="bottom-page">
+        <div class="contact">
+            <h2>CONTACT US</h2>
+            <p>...@gmail.com<br>(389) 387-3873<br><br><br>@2024 Tipton</p>
+        </div>
+
+        <div class="vert-line"></div>
+
+        <div class="social">
+            <h2>FOLLOW US</h2>
+            
+            <div class="icon"> 
+
+                <div class="instagram">
+                    <p><a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png?20200512141346" style="width:52px;height:52px;"></a></p>
+                </div>
+                
+                <div class="twitter">
+                    <p><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" style="width:50px;height:50px;"></a></p>
+                </div>
+                
+                <div class="facebook">
+                    <p><a href="#"><img src="https://static-00.iconduck.com/assets.00/facebook-icon-512x512-seb542ju.png" style="width:52px;height:52px;"></a></p>
+                </div>
+                 
+            </div>   
+            
+        </div>
+
+    </article>
+
+    
+    <script>
+        /*functions for the popup of the facilites*/
+        function showDin(){     
+            document.getElementById('popup-1').classList.toggle('active');
+        }
+
+        function showSpa(){       
+            document.getElementById('popup-2').classList.toggle('active');
+        }
+
+        function showPool(){     
+            document.getElementById('popup-4').classList.toggle('active');
+        }
+
+        function showThearpy(){       
+            document.getElementById('popup-3').classList.toggle('active');
+        }
+
+        function showBar(){     
+            document.getElementById('popup-5').classList.toggle('active');
+        }
+
+        function showGym(){       
+            document.getElementById('popup-6').classList.toggle('active');
+        }
+    </script>
+    
+
+</body>
+</html>

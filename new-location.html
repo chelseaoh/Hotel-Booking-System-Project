@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hilton</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="new-location.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Whisper&display=swap");
+    </style>
+
+</head>
+<body>
+    <!--NAVIGATION BAR-->
+    <header class="header">
+        <a href="#" class="Hilton">Tipton</a>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="new-location.html">Our Locations</a>
+            <a href="newsletters-brand.html">NewsLetter</a>
+            <a href="discounts-brand.html">Discounts</a>
+            
+            <a href="#">Book Now</a>
+            <button class="btnLogin-popup">Login</button>
+            
+        </nav>
+        
+    </header>
+    
+    <article class="getaway-area">
+        <img class="getaway-pic" src="https://thinkhealth.priorityhealth.com/wp-content/uploads/2020/08/ThinkHealth-Personal-Wellness-Staycation-2-scaled.jpg" alt="" style="width:100%; height: 650px">
+        <section class= "perfect-text-background">  
+            <h1>FIND A HOTEL<br>AND PLAN THE</h1>
+            <h2>perfect getaway</h2>
+        
+        </section>
+        
+    </article>
+    
+    <article class="center-text"> 
+        <h3># Hotels Around the World</h3> 
+        <p> And each one is thoughtfully designed with our guests' needs in mind.</p>
+    </article>
+    
+ 
+    <!--DROP-DOWN MENU-->
+    <div class="container">
+        <select class="form-select-region" id="hotelSelect">
+            <option class="hotel" value="hotel-1.html">Hilton</option>
+            <option class="hotel" value="hotel-2.html">Tipton</option>
+            <option class="hotel" value="hotel-3.html">Double Tree</option>
+        </select>
+        <!--  <button id="jump">Go to</button> -->
+        <button  class="find-button" id="jump">FIND HOTEL</button>
+    </div>
+
+    <img class="world-img" src="https://upload.wikimedia.org/wikipedia/commons/4/4c/World_blank_map_%28grey_%26_white%29.png" alt="">
+    
+    <!--BOTTOM PAGE-->
+    <article class="bottom-page">
+        <div class="contact">
+            <h4>CONTACT US</h4>
+            <p>...@gmail.com<br>(389) 387-3873<br><br><br>@2024 Tipton</p>
+        </div>
+
+        <div class="vert-line"></div>
+        
+        <div class="social">
+            <h4>FOLLOW US</h4>
+            
+            <div class="icon"> 
+
+                <div class="instagram">
+                    <p><a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png?20200512141346" style="width:52px;height:52px;"></a></p>
+                </div>
+                
+                <div class="twitter">
+                    <p><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" style="width:50px;height:50px;"></a></p>
+                </div>
+                
+                <div class="facebook">
+                    <p><a href="#"><img src="https://static-00.iconduck.com/assets.00/facebook-icon-512x512-seb542ju.png" style="width:52px;height:52px;"></a></p>
+                </div>
+                 
+            </div>   
+            
+        </div>
+      
+    </article>
+
+    <!----->
+    <!-- JavaScript -->
+    <script type ="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+
+        document.getElementById('jump').addEventListener('click', function() {
+            var url = document.getElementById('hotelSelect').value;
+            window.open(url,'_blank' );
+            /*window.location.href = url; */
+        });
+        
+
+    </script>
+
+</body>
+</html>

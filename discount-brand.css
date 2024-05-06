@@ -1,0 +1,204 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width:100%;
+    min-height: 100vh;
+   /* 
+    border: 5px dashed rgb(162, 0, 255);*/
+}
+
+/*title of page*/
+h1{
+    margin-top: 7%;
+    margin-left: 3%;
+    font-weight: 100%;
+    font-size: 300%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/*discounts on the left side*/
+.left-name{
+    position: relative;
+    font-size: 250%;
+    font-weight: 150%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    top: 20%;
+    margin-left: 14%;
+}
+
+.left-details{
+    position: relative;
+    font-size: 200%;
+    font-weight: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    top: 25%;
+    margin-left: 14%;
+    
+}
+
+.summer-img{
+    position: absolute;
+    top: -18%;
+    left: 55%;
+}
+
+.discount-left-1{
+    position: absolute;
+    background-color: rgb(247, 233, 127);
+    width:100%;
+    height: 30%;
+    top: 25%;
+}
+
+/*discounts on the right side*/
+.right-name{
+   
+    position: relative;
+    font-size: 250%;
+    font-weight: 150%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    top: 20%;
+    margin-left: 50%;
+}
+
+
+.right-details{
+    position: relative;
+    font-size: 200%;
+    font-weight: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    top: 25%;
+    margin-left: 50%;
+}
+
+.military-img{
+    position: absolute;
+    top: -25%;
+    left: 5%;
+}
+
+.discount-right{
+    position: absolute;
+    background-color: rgb(152, 248, 165);
+    width:100%;
+    height: 30%;
+    top: 70%;
+
+}
+
+/*second left*/
+.relax-img{
+    position: absolute;
+    top: -10%;
+    left: 55%;
+}
+.discount-left-2{
+    position: absolute;
+    background-color: rgb(247, 233, 127);
+    width:100%;
+    height: 36%;
+    top: 115%;
+
+}
+
+/*bottom of page */
+.contact{
+    position: absolute;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    font-weight: 5px;
+    bottom: 10%;
+    left:5%;
+    line-height: 1.8;
+}
+
+.vert-line{
+    position: absolute;
+    border-left: 4px solid rgb(255, 255, 255);
+    height: 180px;
+    bottom: 10%;
+    left:22%;
+}
+
+
+
+.social{
+    position: absolute;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    font-weight: 5px;
+    bottom: 72%;
+    left: 27%;
+
+}
+
+.instagram{
+    position: absolute;
+    bottom: -235%;
+
+}
+.twitter{
+    position: absolute;
+    left: 45%;
+    bottom: -235%
+}
+
+.facebook{
+    position: absolute;
+    left: 90%;
+    bottom:-235%;
+}
+
+.bottom-page{
+    position: absolute;
+    background-color: black;
+    top: 160%;
+    height: 30%;
+    width: 100%;
+}
+
+/*RULES OF THUMB for scalling on diff devices: <600px, 601px, 768px, 992px, 1200ox */
+/*
+@media only screen and(max-width: 600px){
+    .wrapper-main{
+       width: 100%; 
+       background-color: orange;
+    }
+    
+
+}
+@media only screen and(min-width: 601px){
+    .wrapper-main{
+        width: 100%; 
+        background-color: rgb(60, 255, 0);
+     }
+     
+}
+@media only screen and(min-width: 768px){
+    .wrapper-main{
+        width: 100%; 
+        background-color: rgb(81, 92, 245);
+     }
+  
+}
+@media only screen and(min-width: 992px){
+    .wrapper-main{
+        width: 100%; 
+        background-color: rgb(0, 255, 213);
+     }
+    
+}
+
+@media only screen and(min-width: 1200px){
+    .wrapper-main{
+        width: 100%; 
+        background-color: rgb(255, 0, 153);
+
+     }
+    
+}
+*/
