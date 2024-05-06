@@ -1,54 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Your Payment</title>
+    <link rel="stylesheet" href="payment.css">
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
 </head>
+
 <body>
-    <h1>Payment Details</h1>
-    <form id="paymentForm">
-        <fieldset>
-            <legend>Credit Card Information</legend>
-            <label for="name">Cardholder Name:</label>
-            <input type="text" id="name" name="name" required>
-            <br>
-            <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" required>
-            <br>
-            <label for="expirationDate">Expiration Date (MM/YY):</label>
-            <input type="text" id="expirationDate" name="expirationDate" required>
-            <br>
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
-            <br>
-        </fieldset>
+    <div class="payment-container">
+        <h1>Payment Details</h1>
+        <form id="paymentForm" class="payment-form">
+            <fieldset>
+                <legend>Credit Card Information</legend>
+                <label for="name">Cardholder Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required>
+                <label for="expirationDate">Expiration Date (MM/YY):</label>
+                <input type="text" id="expirationDate" name="expirationDate" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </fieldset>
 
-        <fieldset>
-            <legend>Booking Details</legend>
-            <label for="hotelID">Hotel ID:</label>
-            <input type="text" id="hotelID" name="hotelID" readonly>
-            <br>
-            <label for="roomType">Room Type:</label>
-            <input type="text" id="roomType" name="roomType" readonly>
-            <br>
-            <label for="arrivalDate">Arrival Date:</label>
-            <input type="date" id="arrivalDate" name="arrivalDate" readonly>
-            <br>
-            <label for="departureDate">Departure Date:</label>
-            <input type="date" id="departureDate" name="departureDate" readonly>
-            <br>
-            <label for="totalCost">Total Cost:</label>
-            <input type="text" id="totalCost" name="totalCost" readonly>
-            <br>
-        </fieldset>
+            <fieldset>
+                <legend>Booking Details</legend>
+                <label for="hotelID">Hotel ID:</label>
+                <input type="text" id="hotelID" name="hotelID" readonly>
+                <label for="roomType">Room Type:</label>
+                <input type="text" id="roomType" name="roomType" readonly>
+                <label for="arrivalDate">Arrival Date:</label>
+                <input type="date" id="arrivalDate" name="arrivalDate" readonly>
+                <label for="departureDate">Departure Date:</label>
+                <input type="date" id="departureDate" name="departureDate" readonly>
+                <label for="totalCost">Total Cost:</label>
+                <input type="text" id="totalCost" name="totalCost" readonly>
+            </fieldset>
 
-        <button type="submit">Submit Payment</button>
-    </form>
-
-    <div id="paymentResult"></div>
+            <button type="submit" class="submit-btn">Submit Payment</button>
+        </form>
+        <div id="paymentResult"></div>
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
@@ -91,7 +86,6 @@
                 totalCost: parseFloat(document.getElementById('totalCost').value)
             };
 
-
             const bookingsRef = ref(db, `Bookings/${bookingData.hotelID}/${bookingData.cardholderName}`);
             set(bookingsRef, bookingData)
                 .then(() => {
@@ -106,4 +100,5 @@
         window.onload = loadBookingDetails;
     </script>
 </body>
+
 </html>
