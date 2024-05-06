@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hilton</title>
+    <link rel="stylesheet" href="access-booking.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Link Info from the User-->
+    <a href="user-account.html">User Account Info</a>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Whisper&display=swap");
+    </style>
+
+</head>
+<body>
+
+    <!--NAVIGATION BAR-->
+    <header class="header">
+        <a href="#" class="Hilton">Tipton Hotel</a>
+
+        <nav class="navbar">
+            <a href="room-details.html">Room Details</a>
+            <a href="access-booking.html">Booking Info</a>
+            <a href="billing.html">Billing</a>
+
+            <div class="user-icon"> 
+                <i class='bx bx-face' ></i>
+            </div>
+            
+        </nav>
+        
+    </header>
+
+    <article class="enter-booking-info">
+        <h1> Booking Info</h1>
+        <label>Guest's Name</label>
+        <input id="bookingData">
+        <button class="submit" id="mySubmit">Submit</button>
+    </article>
+    <p id="bookingDetails">DISPLAY INFO</p>
+
+    <!-- Finding User Info in Database -->
+    <div id="findDetails">
+        <h1>Find by ID</h1>
+        <h4>ID</h4>
+        <input id="findID" type="text"> <br><br>
+        <button id="find">FIND</button>     <br><br><br><br>
+
+        <h3 id="findName" type="text"></h3>
+        <h3 id="findPhoneNumber" type="text"></h3> 
+        <h3 id="findAddress" type="text"></h3> 
+        <h3 id="findCity" type="text"></h3>
+        <h3 id="findState" type="text"></h3>
+        <h3 id="findZipCode" type="text"></h3> 
+        <h3 id="findCardNumber" type="text"></h3>
+        <h3 id="findExpirationDate" type="text"></h3>
+        <h3 id="findCVVNumber" type="text"></h3> <br><br>
+    </div>
+    
+
+
+    <!--JAVASCRIPT BELOW-->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"
+
+        
+        // Connecting to Database        
+        const dataBase = getDatabase();
+
+        // Finding User Info
+        var findName = document.querySelector("#findName");
+        var findID = document.querySelector("#findID");
+        var findPhoneNumber = document.querySelector("#findPhoneNumber");
+        var findAddress = document.querySelector("#findAddress");
+        var findCity = document.querySelector("#findCity");
+        var findState = document.querySelector("#findState");
+        var findZipCode = document.querySelector("#findZipCode");
+        
+        // Buttons
+        var findButton = document.querySelector("#find");
+
+        // Finding User Data
+        function FindData() {
+            const dataBaseref = ref(dataBase);
+
+            get(child(dataBaseref, "People/" + findID.value))
+            .then((snapshot)=>{
+                if (snapshot.exists()) {
+                    findName.innerHTML = "Name: " + snapshot.val().Name;
+                    findPhoneNumber.innerHTML = "Phone Number: " + snapshot.val().PhoneNumber;
+                    findAddress.innerHTML = "Address: " + snapshot.val().Address;
+                    findCity.innerHTML = "City: " + snapshot.val().City;
+                    findState.innerHTML = "State: " + snapshot.val().State;
+                    findZipCode.innerHTML = "Zip Code: " + snapshot.val().ZipCode;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        // Button Actions
+        findButton.addEventListener('click', FindData);
+
+
+   
+        const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+        const detailsDiv = document.getElementById('bookingDetails');
+
+        document.getElementById('mySubmit').addEventListener('click', function() {
+            
+            if (bookingData) {
+                detailsDiv.innerHTML = `
+                    <p>Cardholder Name: ${bookingData.cardholderName}</p>
+                    <p>Hotel ID: ${bookingData.hotelID}</p>
+                    <p>Room Type: ${bookingData.roomType}</p>
+                    <p>Arrival Date: ${bookingData.arrivalDate}</p>
+                    <p>Departure Date: ${bookingData.departureDate}</p>
+                    <p>Total Cost: ${bookingData.totalCost}</p>
+                `;
+                document.getElementById("bookingDetails").innerHTML = detailsDiv.innerHTML;
+                
+            } else {
+                document.getElementById("bookingDetails").innerHTML = 'No booking data found.';
+                
+            }
+
+        });
+    
+    </script>
+    
+
+</body>
+</html>
