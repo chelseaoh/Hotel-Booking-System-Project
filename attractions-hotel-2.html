@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaBelle - Tipton</title>
+    <link rel="stylesheet" href="attractions.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Whisper&display=swap");
+    </style>
+
+</head>
+<body>
+    <script src="Login.js"></script>
+    <header class="header">
+        <div class="name-n-rating">
+            <a href="#" class="Hilton">Tipton</a>
+            <div class="star-rating">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div>
+
+        </div>
+               
+        <!--
+        <button class="join" id="btnLoginPopup">Join</button>
+        <button class="login">Log in</button> -->
+        <button id="btnLoginPopup" class="btnLogin-popup">Login</button>
+        <button id="btnLogout" class="btnLogout-popup" style="display: none;">Logout</button>
+
+        <nav class="navbar">
+            <!--default-->
+            <a href="hotel-2.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+
+            <!-- signed-in -->
+            <a href="discounts-hotel-2.html">Discounts</a>
+            <a href="newsletters-hotel-2.html">NewsLetters</a>
+            
+
+            <!--default-->
+            <a href="attractions-hotel-2.html">Tourist Attractions</a>
+
+        </nav>
+
+    </header>
+
+     <!--login pop-up-->
+     <div class = "popup" style ="display: none">
+        <section class="section">
+            <div class="wrapper">
+
+                <button id = "xBtn">x</button>
+
+                <div class="logreg-box">
+                    <div class="form-box login" style = "display: none">
+                        <div class="logreg-title">
+                            <h2>Login</h2>
+                            <p>Please provide the following to login</p>
+                        </div>
+                        <form action="#">
+                            <form action="#">
+                                <div class="input-box">
+                                    <span class="icon"><i class='bx bx-envelope'></i></span>
+                                    <label for="login-email">Email</label>
+                                    <input type="email" id="login-email" name="email" required>
+                                </div>
+                                <div class="input-box">
+                                    <span class="icon"><i class='bx bxs-lock'></i></span>
+                                    <label for="login-password">Password:</label>
+                                    <input type="password" id="login-password" name="password" required>
+                                </div>
+                                <button type="submit" class="btn">Login</button> <br><br>
+                                <button id="googleSignInButton" class="btn">Sign in with Google</button>
+
+                                <div class="remember-forgot">
+                                    <label><input type="checkbox"> Remember me</label>
+                                    <a href="#">Forgot password?</a>
+                                </div>
+                                <div class="logreg-link">
+                                    <p>Don't have an account?<button id="regButn">Become a member today!</button></p>
+                                    
+                                    <a href="#" class="guest-login">Guest Login</a>
+                                </div>
+                                <div class="blurred-background"></div>
+                        </form>
+                    </div>
+                    <div class="form-box register" style = "display: block">
+                        <div class="logreg-title">
+
+                            <!--register pop-up-->
+                            <h2>Join CaBelle Lux</h2>
+                            <p>Please provide the following</p>
+                        </div>
+
+                        <form action="#">
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-user'></i></span>
+                                <label for="full-name">Full Name</label> <!-- Add a label for the input -->
+                                <input type="text" id="full-name" name="full-name" required> <!-- Associate the label with the input using the 'for' attribute -->
+                            </div>
+
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-envelope'></i></span>
+                                <label for="register-email">Email</label>
+                                <input type="email" id="register-email" name="email" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+                                <input type="password" id="register-password" name="password" required>
+                                <label for="register-password">Password</label>
+                            </div>
+                            <button type="submit" class="btn">Register</button>
+
+                            <div class="remember-forgot"><label><input type="checkbox">I agree to the terms & conditions</label>
+                            </div>
+
+                            <div class="logreg-link">
+                                <p>Already a member? 
+                                    <button id="loginButn">Login</button>
+                                </p>
+                                <!--<a href="#" class="guest-login">Guest Login</a> -->
+                            </div>
+                            <div class="blurred-background"></div>
+                        </form>
+                        
+
+                       
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+
+    <h1>Tourist Attractions</h1>
+    
+    <article class = "event-1">  
+        <h5>DisneyLand</h5>
+        <p>Perfect place for families and friends. Enjoy the magicical experinces that Disneyland has to offer. There's never a dull moment, nothing better than laughter and fun times.They are only 30 minutes away!</p>
+        <image class="img-1" src="https://www.discoverhongkong.com/content/dam/dhk/intl/explore/attractions/the-ultimate-guide-to-hong-kong-disneyland/ultimate-guide-to-hong-kong-disneyland-1920x1080.jpg" alt=""></image>
+        
+    </article>
+
+    <article class = "event-2">  
+        <h5>The Huntington Library, Art Museum, and Botanical Gardens</h5>
+        <p>
+            Enjoy a relaxing stroll among their various botanical or themesed  gardens. Take a chance to see the many pieces of decorative arts and folk art, paintings, prints and drawings, photography, and sculpture are displayed in the Huntington Art Gallery. Explore one of the world’s great independent research libraries, with more than 12 million items spanning the 11th to the 21st century. Only 30 minutes away!
+        </p>
+        <image class="img-2" src="https://content.500experiences.com/services/9a9e94c6-b85b-4bae-8679-563fe719b6f6/large/img_4889.jpg" alt=""></image>
+        
+    </article>
+
+    <article class = "event-3">  
+        <h5>Griffith Observatory</h5>
+        <p>Located just above Hollywood, the distinctive Observatory building can be seen for miles. Whether you walk, bike, take the bus, grab a shared ride, or drive, a visit to the Observatory should be part of any trip to Los Angeles. Only 30 minutes away!</p>
+        <image class="img-3" src="https://www.discoverlosangeles.com/sites/default/files/multimedia/2017/11/griffith-observatory-hollywood-sign-sunset.jpg?width=768&height=576&fit=crop&quality=75&auto=webp" alt=""></image>
+        
+    </article>
+    
+
+    <article class="bottom-page">
+        <div class="contact">
+                <h2>CONTACT US</h2>
+                <p>...@gmail.com<br>(389) 387-3873<br><br><br>@2024 Tipton</p>
+        </div>
+        <div class="vert-line"></div> 
+
+            
+        <div class="social">
+            <h2>FOLLOW US</h2>
+            
+            <div class="icon"> 
+
+                <div class="instagram">
+                    <p><a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png?20200512141346" style="width:52px;height:52px;"></a></p>
+                </div>
+                
+                <div class="twitter">
+                    <p><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" style="width:50px;height:50px;"></a></p>
+                </div>
+                
+                <div class="facebook">
+                    <p><a href="#"><img src="https://static-00.iconduck.com/assets.00/facebook-icon-512x512-seb542ju.png" style="width:52px;height:52px;"></a></p>
+                </div>
+                 
+            </div>   
+            
+        </div>
+
+    </article>
+    
+
+    <!-- JavaScript -->
+    <script type ="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    
+        // Import GoogleAuthProvider
+        import {
+            GoogleAuthProvider,
+            signInWithPopup
+        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2w9wR2W7hHjm1vojOmMO7cX-_93QtZWI",
+            authDomain: "cabelle-a0a69.firebaseapp.com",
+            databaseURL: "https://cabelle-a0a69-default-rtdb.firebaseio.com",
+            projectId: "cabelle-a0a69",
+            storageBucket: "cabelle-a0a69.appspot.com",
+            messagingSenderId: "735995960774",
+            appId: "1:735995960774:web:f0fa81b21871c044b7a6c7",
+            measurementId: "G-MF101YKX7H"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+    
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"
+    
+    
+    
+        const dataBase = getDatabase();
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButn = document.getElementById('loginButn'); // Correctly select the login button using its ID
+            const registerBox = document.querySelector('.form-box.register'); // Correctly select the register form box
+            const loginBox = document.querySelector('.form-box.login'); // Correctly select the login form box
+            const regButn = document.getElementById('regButn'); // Correctly select the login button using its ID
+            const btnLoginPopup = document.getElementById('btnLoginPopup'); // Correctly select the login button using its ID
+            const popup = document.querySelector('.popup'); // Correctly select the login form box
+            const xBtn = document.getElementById('xBtn'); // Correctly select the login button using its ID
+            const loginForm = document.querySelector('.logreg-box .login form');
+            const registerForm = document.querySelector('.logreg-box .register form');
+            const loginButton = document.getElementById('btnLoginPopup');
+            const logoutButton = document.getElementById('btnLogout');
+    
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log('Logged in:', userCredential.user);
+                    // Implement what happens on successful login
+                } catch (error) {
+                    console.error('Login failed:', error.message);
+                    alert("Login failed: " + error.message); // Simple user feedback
+                }
+            });
+    
+            registerForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    console.log('Registered:', userCredential.user);
+                    // Implement what happens on successful registration
+                } catch (error) {
+                    console.error('Registration failed:', error.message);
+                    alert("Registration failed: " + error.message); // Simple user feedback
+                }
+            });
+    
+            onAuthStateChanged(auth, user => {
+                if (user) {
+                    loginButton.style.display = 'none';
+                    logoutButton.style.display = 'block';
+                    popup.style.display = 'none';
+                } else {
+                    loginButton.style.display = 'block';
+                    logoutButton.style.display = 'none';
+                    popup.style.display = 'block';
+                }
+            });
+    
+            btnLoginPopup.addEventListener('click', function() {
+                // Toggle visibility
+                if (popup.style.display !== 'none') {
+                    popup.style.display = 'none'; // Hide the register box
+                } else {
+                    popup.style.display = 'block'; // Show the register box                }
+                }   
+            });
+    
+    
+            loginButn.addEventListener('click', function() {
+                // Toggle visibility
+                if (registerBox.style.display !== 'none') {
+                    registerBox.style.display = 'none'; // Hide the register box
+                    loginBox.style.display = 'block'; // Show the login box
+                } else {
+                    registerBox.style.display = 'block'; // Show the register box
+                    loginBox.style.display = 'none'; // Hide the login box
+                }
+            });
+    
+            logoutButton.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    alert('Signed out successfully');
+                }).catch((error) => {
+                    console.error('Sign Out Error', error);
+                });
+            });
+    
+            regButn.addEventListener('click', function() {
+                // Toggle visibility
+                if (registerBox.style.display !== 'block') {
+                    registerBox.style.display = 'block'; // Hide the register box
+                    loginBox.style.display = 'none'; // Show the login box
+                } else {
+                    registerBox.style.display = 'none'; // Show the register box
+                    loginBox.style.display = 'block'; // Hide the login box
+                }
+            });
+    
+            xBtn.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+        })
+    
+        document.getElementById('googleSignInButton').addEventListener('click', function() {
+            signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access Google APIs.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // Optionally redirect to a new page here or perform other actions with the login information
+                console.log('Google sign-in successful', user);
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used for sign-in.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.error('Google sign-in failed', errorMessage);
+                alert("Google sign-in failed: " + errorMessage);
+            });
+        });
+        </script>
+
+</body>
+</html>
